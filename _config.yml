@@ -22,9 +22,9 @@ author: POCASTER / Inevitable-Event Studio
 navbar-links:
   About Me: "aboutme"
   Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
+    - INDIE NOVA: "https://indienova.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
-  Go to Google: "https://www.google.com"
+  Leave this page: "https://www.google.com"
 
 ################
 # --- Logo --- #
@@ -297,6 +297,7 @@ exclude:
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-admin
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
