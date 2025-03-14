@@ -1,16 +1,36 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: 关于 我
+subtitle: 只有一个人
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+#### 本人：
+- 华阳博尔赫斯、天府大道南段齐泽克、广福小岛秀夫
+- 高新区茶水间现象学研究带头人
+- 天府四街《等待茶百道》行为艺术持续参演者
+- 孵化园B座23F东侧紧急出口年度烟雾观测员
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+#### 正在：
+- 灵活就业
+- 写作
+- 敲代码
+- 找工作
 
-What else do you need?
+#### 准备：
+- 不装了，好好工作比什么都强
 
-### My story
+##### 一些历史
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+从事过新媒体、广告、AI等行业。
+
+也许这不太符合“工作稳定”的定义。不过，在我眼中这些工作并无实质的分别。做这些工作的时候，我始终在想着写作，一种写作焦虑始终在折磨着我，让我无法平静。
+
+现在想来，或许我只是在这种焦虑的庇护下，不断的逃避着工作的残酷————你得不断产出、不断沟通、不断妥协，成为一个“工具人”，这样你才能升职加薪，成为大家认可的“人才”，最后站在台前，接受人群的掌声。
+
+我这样说好像我做得到一样————虽然也曾拿过一些好绩效，被许下一些好未来。然而，最终我还是屈服在这种焦虑之下，胆怯地逃避了。
+
+再到今天，好像避无可避，再不踏实工作，就要和人类生活脱节了。却也意识到，其实我从来也没有真正抗拒这种残酷。逃避并非理性选择，而是粗糙的本能，一旦被发现就毫无动机可言了。
+
+> 我们只有一条路，顺着人群之间的缝隙，灌木低矮的地方，泥水荡漾的地方。“快行动吧”，你说。如今我老了，每日无所事事，只是想着这句话。
+
+2024年12月14日，成都
