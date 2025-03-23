@@ -4,7 +4,7 @@ title: Maddy：Celeste & Forgiveness
 cover-img: /assets/img/celeste.png
 thumbnail-img: /assets/img/celeste.png
 share-img: /assets/img/celeste.png
-tags: [cite, game, public]
+tags: [Cite, Game, Public]
 author: Maddy
 ---
 

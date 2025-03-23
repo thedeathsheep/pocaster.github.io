@@ -9,9 +9,6 @@ author: pocaster
 mathjax: true
 ---
 
-
----
-
 ## **刚体物理（Rigid Body Dynamics）详解**
 
 ---

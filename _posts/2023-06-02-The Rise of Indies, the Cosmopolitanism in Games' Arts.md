@@ -4,7 +4,7 @@ title: The Rise of Indies, the Cosmopolitanism in Games' Arts
 cover-img: /assets/img/0026716027_0.jpg
 thumbnail-img: /assets/img/0026716027_0.jpg
 share-img: /assets/img/0026716027_0.jpg
-tags: [source, gamedev, public]
+tags: [Source, Gamedev, Public]
 author: GraceWay
 ---
 
@@ -21,7 +21,7 @@ As Hsu once postulated that because contemporary arts' practices rely heavily on
 Thanks to the invention of Internet which according Lawrence Lessig, has changed our read and write culture so public can easily access to information and distribute information freely (2004). As a result, global culture becomes "a toolbox"(Hsu, 2005), which provided game designers 
 
 1) user-friendly tools to simplify the process of programming games; 2) various accessible resources they could use; 
-3) multiple downloadable platforms where they could distribute their games. 
+2) multiple downloadable platforms where they could distribute their games. 
 
 All the above conditions cut down the cost of making and distributing games, therefore, independent game designers were able to play important roles in games industry again.
 
