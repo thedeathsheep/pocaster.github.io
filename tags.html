@@ -34,3 +34,13 @@ title: 'Tag Index'
     </div>
 {%- endfor -%}
 </div>
+
+<h1>Tags</h1>
+
+<ul>
+  <li><a href="/tags/private">Private (107)</a></li>
+  <!-- 其他真实标签 -->
+  {% for tag in site.tags %}
+    <li><a href="/tags/{{ tag[0] }}">{{ tag[0] }} ({{ tag[1].size }})</a></li>
+  {% endfor %}
+</ul>

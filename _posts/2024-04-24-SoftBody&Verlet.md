@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2D物理(10)SoftBody & Verlet积分
+title: 2D物理(10)SoftBody & Verlet 积分
 cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
@@ -9,9 +9,6 @@ author: pocaster
 mathjax: true
 ---
 
-
-
----
 
 ## **软体模拟（Soft Bodies）与Verlet积分深入解析**
 
