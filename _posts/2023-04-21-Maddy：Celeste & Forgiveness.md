@@ -10,6 +10,7 @@ author: Maddy
 
 
 Celeste & Forgiveness
+
 This was originally a short Twitter thread about some Celeste game-feel tricks. I don't think that we invented any of these techniques, but they are important parts of the moment-to-moment experience of Celeste.
 
 1. Coyote Time
