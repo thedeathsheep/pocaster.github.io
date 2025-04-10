@@ -25,12 +25,19 @@ layout: base
 </main>
 
 {% if page.mermaid %}
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
 <script>
-  mermaid.initialize({
-    startOnLoad: true,
-    theme: 'default',  // 可选主题：default, forest, dark, neutral
-    securityLevel: 'loose'
+  document.addEventListener('DOMContentLoaded', function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    });
   });
 </script>
 {% endif %}
