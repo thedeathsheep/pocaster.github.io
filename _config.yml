@@ -306,3 +306,9 @@ plugins:
 
 port: 4001
 
+# Mermaid support
+mermaid:
+  enable: true
+  version: "9.4.3"
+  theme: "default"
+
