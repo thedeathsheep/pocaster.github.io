@@ -309,6 +309,6 @@ port: 4001
 # Mermaid support
 mermaid:
   enable: true
-  version: "9.4.3"
+  version: "11.6.0"
   theme: "default"
 
