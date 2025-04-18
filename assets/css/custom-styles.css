@@ -1,0 +1,51 @@
+/* 移动端优化样式 */
+@media (max-width: 768px) {
+  /* 调整导航栏 */
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  
+  /* 调整文章内容 */
+  .post-preview {
+    padding: 15px;
+  }
+  
+  .post-title {
+    font-size: 1.5rem;
+  }
+  
+  /* 调整图片 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* 调整代码块 */
+  pre {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+  
+  /* 调整表格 */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  /* 调整页脚 */
+  .footer {
+    padding: 20px 0;
+  }
+  
+  /* 调整社交图标 */
+  .social-network-links {
+    text-align: center;
+  }
+  
+  /* 调整按钮 */
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+} 
