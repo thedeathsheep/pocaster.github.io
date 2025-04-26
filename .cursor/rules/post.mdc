@@ -1,0 +1,118 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+### 1. 项目概述
+这是一个基于 Jekyll 的个人博客网站，使用 Beautiful Jekyll 主题构建，托管在 GitHub Pages 上。
+
+### 2. 技术特点
+- **静态网站生成器**：使用 Jekyll 作为静态网站生成器
+- **主题框架**：基于 Beautiful Jekyll 主题
+- **托管平台**：使用 GitHub Pages 进行托管
+- **开发环境**：使用 Ruby 和 Bundler 进行本地开发
+
+### 3. 功能特性
+- **响应式设计**：支持各种设备访问
+- **文章管理**：
+  - 支持文章分类和标签系统
+  - 内置文章搜索功能
+  - RSS 订阅支持
+- **社交功能**：
+  - 社交媒体集成
+  - 评论系统支持（可配置多种评论系统）
+- **个性化定制**：
+  - 可自定义网站颜色主题
+  - 支持自定义导航栏和页脚
+  - 支持自定义头像和网站图标
+
+### 4. 项目结构
+- `_posts/`：存放博客文章
+- `_layouts/`：页面布局模板
+- `_includes/`：可重用的页面组件
+- `assets/`：静态资源（图片、CSS、JS等）
+- `_config.yml`：网站配置文件
+- `_data/`：数据文件目录
+- `_plugins/`：Jekyll 插件目录
+
+### 5. 特色功能
+- 支持多种评论系统（Disqus、Facebook Comments、Staticman等）
+- 支持多种分析工具（Google Analytics、Matomo等）
+- 支持自定义 CSS 和 JavaScript
+- 支持 Mermaid 图表渲染
+- 支持多语言（通过配置文件可设置）
+
+### 6. 开发与部署
+- 本地开发环境搭建简单
+- 使用 Bundler 管理依赖
+- 支持实时预览（`bundle exec jekyll serve`）
+- 自动部署到 GitHub Pages
+
+### 7. 维护与更新
+- 使用 Git 进行版本控制
+- 提供完整的文档说明
+- 遵循 MIT 开源协议
+- 定期更新和维护
+
+你需要注意的是：
+
+### 1. 文件命名规则
+- 文件名格式：`YYYY-MM-DD-标题.md`
+- 使用英文或中文命名
+- 文件扩展名为 `.md`（Markdown格式）
+
+### 2. 文章头部信息（Front Matter）
+```yaml
+---
+layout: post            # 布局类型
+title: 文章标题         # 文章标题
+cover-img: /path/to/img # 封面图片路径
+thumbnail-img: /path    # 缩略图路径
+share-img: /path       # 分享图片路径
+tags: [标签1, 标签2]    # 文章标签
+author: 作者名          # 作者
+mathjax: true/false    # 是否启用数学公式
+mermaid: true/false    # 是否启用Mermaid图表
+---
+```
+
+### 3. 内容格式规范
+1. **Markdown语法**
+   - 支持标准Markdown语法
+   - 支持标题、列表、链接、图片等基本格式
+
+2. **特殊功能支持**
+   - 数学公式支持（通过 `mathjax: true`）
+   - Mermaid图表支持（通过 `mermaid: true`）
+   - 代码块支持（使用 \`\`\` 包裹）
+
+3. **图表绘制**
+   - Mermaid图表必须包裹在 `<div class="mermaid">` 标签中
+
+### 4. 文章组织结构
+1. **基本结构**
+   - Front Matter（头部信息）
+   - 正文内容
+   - （可选）参考资料或脚注
+
+2. **内容组织**
+   - 可以使用多级标题（#、##、###等）
+   - 支持图文混排
+   - 支持代码示例
+
+### 5. 文件存放位置
+- 所有文章都存放在 `_posts` 目录下
+- 按照年份-月份-日期组织文件名
+
+### 6. 多语言支持
+- 支持中英文混排
+- 支持其他语言字符
+
+### 7. 特殊注意事项
+1. 文件名中的日期必须是有效的日期格式
+2. Front Matter 必须使用三个连字符（---）包裹
+3. Front Matter 中的所有字段都是可选的，但建议至少包含 `layout` 和 `title`
+4. 如果需要使用特殊功能（如数学公式或Mermaid图表），需要在Front Matter中明确声明
+
+这种格式设计使得文章既能保持良好的组织结构，又能支持丰富的展示效果，同时也便于Jekyll静态网站生成器进行处理和渲染。
