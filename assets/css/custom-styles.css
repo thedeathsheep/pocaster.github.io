@@ -49,3 +49,207 @@
     font-size: 0.9rem;
   }
 } 
+
+/* 置顶标签样式 */
+.sticky-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.post-preview {
+    position: relative;
+} 
+
+/* 平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 目录样式 */
+.post-content h3 {
+    scroll-margin-top: 100px; /* 为固定导航栏留出空间 */
+    padding-top: 20px;
+}
+
+.post-content h3:target {
+    animation: highlight 2s ease;
+}
+
+@keyframes highlight {
+    0% { background-color: rgba(255, 107, 107, 0.2); }
+    100% { background-color: transparent; }
+}
+
+/* 目录链接样式 */
+.post-content a[href^="#"] {
+    text-decoration: none;
+    color: #2a7ae2;
+    transition: all 0.2s ease;
+    display: inline-block;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.post-content a[href^="#"]:hover {
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.1);
+    text-decoration: none;
+}
+
+/* 目录容器样式 */
+.post-content h2:first-of-type {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* 折叠面板样式 */
+.collapsible-section {
+    margin-bottom: 20px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.collapsible-header {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.collapsible-header:hover {
+    background-color: #e9ecef;
+}
+
+.toggle-icon {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.collapsible-content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+
+.collapsible-section.active .collapsible-content {
+    padding: 20px;
+    max-height: 2000px; /* 足够大的值以容纳内容 */
+}
+
+.collapsible-section.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+/* 确保内容样式正确 */
+.collapsible-content h4 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.collapsible-content ul {
+    margin-bottom: 20px;
+}
+
+/* Markdown 内容样式 */
+.collapsible-content.markdown-body {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.collapsible-content.markdown-body h3 {
+    font-size: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.collapsible-content.markdown-body h4 {
+    font-size: 1.25em;
+    margin-top: 1.25em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.collapsible-content.markdown-body ul {
+    padding-left: 2em;
+    margin-bottom: 1em;
+}
+
+.collapsible-content.markdown-body li {
+    margin-bottom: 0.5em;
+}
+
+.collapsible-content.markdown-body strong {
+    font-weight: 600;
+}
+
+.collapsible-content.markdown-body em {
+    font-style: italic;
+}
+
+.collapsible-content.markdown-body code {
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
+}
+
+.collapsible-content.markdown-body pre {
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    padding: 16px;
+    overflow: auto;
+    font-size: 0.9em;
+    line-height: 1.45;
+}
+
+.collapsible-content.markdown-body pre code {
+    padding: 0;
+    background-color: transparent;
+}
+
+.collapsible-content.markdown-body blockquote {
+    margin: 0 0 1em;
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;
+}
+
+.collapsible-content.markdown-body table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.collapsible-content.markdown-body table th,
+.collapsible-content.markdown-body table td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+.collapsible-content.markdown-body table tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+}
+
+.collapsible-content.markdown-body table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+} 
