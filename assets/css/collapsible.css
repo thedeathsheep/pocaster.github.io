@@ -1,0 +1,86 @@
+details {
+    margin: 1em 0;
+    padding: 0.5em;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    background-color: #f6f8fa;
+}
+
+details:hover {
+    background-color: #f0f2f5;
+}
+
+summary {
+    cursor: pointer;
+    padding: 0.5em;
+    font-weight: bold;
+    color: #24292e;
+    user-select: none;
+}
+
+summary:hover {
+    color: #0366d6;
+}
+
+details[open] summary {
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+details > *:not(summary) {
+    padding: 0.5em;
+    margin-left: 1em;
+}
+
+/* 目录样式 */
+h2:first-of-type {
+    margin-top: 2em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #eaecef;
+}
+
+h2:first-of-type + ul {
+    background-color: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 1em 2em;
+    margin: 1em 0;
+}
+
+h2:first-of-type + ul li {
+    margin: 0.5em 0;
+}
+
+h2:first-of-type + ul a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+h2:first-of-type + ul a:hover {
+    text-decoration: underline;
+}
+
+/* 标题样式 */
+h2 {
+    margin-top: 1.5em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #eaecef;
+}
+
+h4 {
+    margin-top: 1.2em;
+    color: #24292e;
+}
+
+/* 列表样式 */
+ul {
+    padding-left: 2em;
+}
+
+li {
+    margin: 0.5em 0;
+}
+
+strong {
+    color: #24292e;
+} 

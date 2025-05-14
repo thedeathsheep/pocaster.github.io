@@ -1,0 +1,50 @@
+.sticky-posts {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.sticky-header {
+    color: #666;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sticky-list {
+    margin: 0;
+    padding: 0;
+}
+
+.sticky-item {
+    margin: 5px 0;
+}
+
+.sticky-item a {
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.sticky-item a:hover {
+    color: #007bff;
+}
+
+.sticky-badge {
+    background-color: #dc3545;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    margin-right: 10px;
+}
+
+.sticky-divider {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+} 
