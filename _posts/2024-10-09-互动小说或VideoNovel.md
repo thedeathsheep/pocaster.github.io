@@ -12,6 +12,7 @@ published: true
 ---
 
 ### **一、核心设计立方体**
+
 <div class="mermaid">
 graph TD
     A[互动叙事] --> B[叙事维度]
