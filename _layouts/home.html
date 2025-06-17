@@ -4,20 +4,8 @@ layout: page
 
 {{ content }}
 
-{% assign posts = paginator.posts | default: site.posts %}
-{% assign sticky_posts = "" | split: "" %}
-{% assign normal_posts = "" | split: "" %}
-
-{% for post in posts %}
-  {% if post.sticky %}
-    {% assign sticky_posts = sticky_posts | push: post %}
-  {% else %}
-    {% assign normal_posts = normal_posts | push: post %}
-  {% endif %}
-{% endfor %}
-
-{% assign sticky_posts = sticky_posts | sort: 'date' | reverse %}
-{% assign normal_posts = normal_posts | sort: 'date' | reverse %}
+{% assign sticky_posts = site.posts | where: "sticky", true | sort: "date" | reverse %}
+{% assign normal_posts = site.posts | where_exp: "post", "post.sticky != true" | sort: "date" | reverse %}
 
 <!-- 置顶文章列表 -->
 {% if sticky_posts.size > 0 %}
