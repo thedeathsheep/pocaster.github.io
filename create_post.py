@@ -48,8 +48,8 @@ mermaid: true
 
 # %%
 # 在这里设置文章标题和日期
-title = "AI笔记19"  # 修改这里的标题
-date_str = "2024-02-15"  # 使用 "today" 表示当前日期，或者输入具体日期如 "2024-02-10"
+title = "AI笔记20"  # 修改这里的标题
+date_str = "2024-02-16"  # 使用 "today" 表示当前日期，或者输入具体日期如 "2024-02-10"
 
 # 创建文章
 filepath = create_new_post(title, date_str)
