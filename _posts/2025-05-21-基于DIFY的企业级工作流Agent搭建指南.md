@@ -4,7 +4,7 @@ title: 基于DIFY的企业级Agent搭建指南
 cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [AI, Public]
+tags: [AI]
 author: pocaster
 mathjax: true
 mermaid: true 

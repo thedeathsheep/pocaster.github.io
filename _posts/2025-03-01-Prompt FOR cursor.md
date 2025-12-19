@@ -3,7 +3,7 @@ layout: post
 title: Prompts FOR Cursor 
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Public, AI]
+tags: [AI]
 author: pocaster
 mermaid: true
 mathjax: true

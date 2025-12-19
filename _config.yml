@@ -160,11 +160,14 @@ footer-hover-col: "#0085A1"
 site-css:
   - "/assets/css/custom-styles.css"
   - "/assets/css/sticky-posts.css"
+  - "/assets/css/cyberpunk-home.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
 site-js:
   - "https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"
   - "/assets/js/mermaid.js"
+  - "/assets/js/cyberpunk-effects.js"
+  - "/assets/js/tesseract-hero.js"
 
 #################################
 # --- Web Analytics Section --- #
@@ -305,7 +308,7 @@ plugins:
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
 
-port: 4001
+port: 4010
 
 # Mermaid support
 mermaid:

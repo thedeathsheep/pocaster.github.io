@@ -1,0 +1,1108 @@
+/* ============================================
+   SCI-FI DASHBOARD - HUD DETAILING
+   ============================================ */
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;600&display=swap');
+
+/* Global Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-dark);
+  /* Dot Matrix Pattern - 20px * 20px grid with subtle pastel dots */
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--text-main);
+}
+
+/* Variables - Pastel Macaron Color Palette (Soft Sci-Fi / Vaporwave) */
+:root {
+  --pastel-pink: #ffc1cc; /* 樱花粉 */
+  --pastel-blue: #a2d2ff; /* 婴儿蓝 */
+  --pastel-purple: #cdb4db; /* 香芋紫 */
+  --pastel-mint: #caffbf; /* 薄荷绿 */
+  --pastel-cream: #fdffb6; /* 奶油黄 */
+  --bg-dark: #1a1a2e; /* 极深的午夜蓝紫背景 */
+  
+  /* Soft glow variants */
+  --pastel-blue-dim: rgba(162, 210, 255, 0.4);
+  --pastel-pink-dim: rgba(255, 193, 204, 0.4);
+  --pastel-purple-dim: rgba(205, 180, 219, 0.4);
+  --pastel-mint-dim: rgba(202, 255, 191, 0.4);
+  
+  /* Primary colors for UI */
+  --primary-color: var(--pastel-blue);
+  --accent-color: var(--pastel-purple);
+  --secondary-color: var(--pastel-mint);
+  
+  /* Text colors */
+  --text-main: #e0e7ff; /* 极淡的蓝灰色 */
+  --text-dim: rgba(224, 231, 255, 0.7);
+  
+  /* Background elements */
+  --micro-grid-color: rgba(162, 210, 255, 0.08); /* 柔和的网格线 */
+  
+  /* Tag-based color mappings */
+  --tag-default: var(--pastel-blue);
+  --tag-game-dev: #caffbf; /* Mint green */
+  --tag-ai: #ffc1cc; /* Pink */
+  --tag-programming: #a2d2ff; /* Blue */
+  --tag-design: #cdb4db; /* Purple */
+  --tag-tutorial: #fdffb6; /* Cream */
+  --tag-tech: #a2d2ff; /* Blue */
+  --tag-thoughts: #cdb4db; /* Purple */
+  --tag-literature: #ffc1cc; /* Pink */
+}
+
+/* Ultra-Fine Micro-Grid Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(var(--micro-grid-color) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, var(--micro-grid-color) 0.5px, transparent 0.5px);
+  background-size: 20px 20px; /* 更细密的网格 */
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4; /* 极其微弱 */
+}
+
+/* Deep Vignette (Screen Darkening) */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 40%,
+    rgba(26, 26, 46, 0.3) 70%,
+    rgba(26, 26, 46, 0.7) 100%
+  );
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* Dashboard Layout */
+.sci-fi-dashboard {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+/* ============================================
+   LEFT: VISUAL CORE
+   ============================================ */
+.visual-core {
+  position: relative;
+  border-right: 1px solid var(--pastel-blue-dim);
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(162, 210, 255, 0.05) 0%, var(--bg-dark) 80%);
+}
+
+#tesseract-container {
+  width: 100%; height: 100%;
+  position: absolute; top: 0; left: 0;
+  z-index: 1;
+  /* Ensure canvas is visible and filter effects work */
+  isolation: isolate; /* Create new stacking context */
+}
+
+/* Enhanced glow for Three.js canvas */
+#tesseract-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  /* Ensure filter effects are visible */
+  mix-blend-mode: screen; /* Brighten the glow effect */
+  image-rendering: auto;
+}
+
+.core-overlay {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  z-index: 2;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Main Title with Soft Pastel Glow */
+.main-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 500;
+  font-size: 3.85rem;
+  margin: 0;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--text-main);
+  position: relative;
+  opacity: 1;
+  
+  /* Soft Diffuse Glow - Large blur radius, low opacity */
+  text-shadow: 
+    0 0 15px rgba(162, 210, 255, 0.6),
+    0 0 30px rgba(255, 193, 204, 0.4),
+    0 0 45px rgba(205, 180, 219, 0.3);
+}
+
+.system-status {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.8;
+  opacity: 1;
+  border-left: 2px solid var(--pastel-blue-dim); /* Soft pastel vertical line */
+  padding-left: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Highlight "ONLINE" status in soft pastel mint */
+.system-status .status-online {
+  color: var(--pastel-mint); /* Soft mint green */
+  text-shadow: 0 0 15px rgba(202, 255, 191, 0.6); /* Soft diffuse glow */
+  font-weight: 600;
+}
+
+/* ============================================
+   RIGHT: DATA LOG (Sidebar)
+   ============================================ */
+.data-log {
+  position: relative;
+  /* Ambient Backdrop Glow - Soft pastel radial gradient */
+  background: radial-gradient(circle at 80% 50%, rgba(205, 180, 219, 0.2) 0%, transparent 70%);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* Soft pastel border with diffuse glow */
+  border-left: 1px solid var(--pastel-purple-dim);
+  box-shadow: 
+    -1px 0 8px rgba(205, 180, 219, 0.3), 
+    inset 1px 0 6px rgba(162, 210, 255, 0.2);
+  /* Removed backdrop-filter for performance */
+  /* Breathing space: right padding only (left handled by neural tree) */
+  padding-left: 0; /* Neural bus starts at left edge */
+  padding-right: 4vw;
+  overflow: hidden; /* Contain decorative line */
+}
+
+/* L-Shape Corner Decorations for Data Log */
+.data-log::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--pastel-blue); /* Soft pastel border */
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(162, 210, 255, 0.4); /* Optimized glow */
+  top: 0;
+  left: -1px; /* Align with border */
+  border-right: none;
+  border-bottom: none;
+}
+
+/* Decorative Vertical Dashed Line at Right Edge */
+.data-log::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  border-right: 1px dashed var(--pastel-blue-dim);
+  pointer-events: none;
+  z-index: 1;
+  /* Create intermittent dashed effect */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 8px,
+    var(--pastel-blue-dim) 8px,
+    var(--pastel-blue-dim) 12px
+  );
+}
+
+/* Bottom Corner Decoration (using log-content) */
+.log-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -2vw; /* Align with data-log left border */
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--pastel-blue);
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 0 15px rgba(162, 210, 255, 0.4);
+  border-right: none;
+  border-top: none;
+}
+
+/* Extra corners for right side (if needed, but layout is flush right) */
+/* Adding inner container corners could be cool too */
+
+.log-header {
+  padding: 30px 0 20px 0;
+  border-bottom: 1px solid var(--pastel-blue-dim);
+  background: linear-gradient(90deg, rgba(162, 210, 255, 0.1) 0%, transparent 100%);
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left; /* Force left alignment */
+}
+
+.log-header h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--pastel-blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(162, 210, 255, 0.6); /* Soft diffuse glow */
+}
+
+.blink {
+  animation: blinker 2s ease-in-out infinite;
+  color: var(--accent-color); /* Unified accent color */
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+}
+
+@keyframes blinker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Scrollable Area */
+.log-content {
+  position: relative; /* For bottom corner decoration and neural bus */
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px 0; /* Compact vertical padding */
+  padding-left: 0; /* No left padding, bus line starts at 0 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--pastel-blue-dim) transparent;
+  text-align: left; /* Force left alignment for all content */
+}
+
+/* ============================================
+   NEURAL DATA TREE STRUCTURE
+   ============================================ */
+
+/* Neural Bus Line - Main vertical bus on the left */
+.neural-bus-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  min-height: 100vh; /* Ensure it spans full viewport height */
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--pastel-blue) 15%,
+    var(--pastel-blue) 85%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 6px rgba(162, 210, 255, 0.6),
+    inset 0 0 3px rgba(162, 210, 255, 0.3);
+  z-index: 1;
+  pointer-events: none; /* Don't interfere with scrolling */
+  overflow: hidden; /* For pulse animation */
+}
+
+/* Pulse beam effect using pseudo-element */
+.neural-bus-line::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Height of the light beam */
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(162, 210, 255, 0.8) 20%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(162, 210, 255, 0.8) 80%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 8px rgba(162, 210, 255, 1),
+    0 0 16px rgba(162, 210, 255, 0.6);
+  animation: bus-pulse 3s ease-in-out infinite;
+}
+
+@keyframes bus-pulse {
+  0% {
+    top: -100%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Neural Tree Container - Wraps all nodes */
+.neural-tree-container {
+  position: relative;
+  padding-left: 40px; /* Space for bus line + connector */
+  z-index: 2;
+}
+
+/* Neural Node - Container for each article with connection */
+.neural-node {
+  position: relative;
+  margin-bottom: 24px; /* Spacing between nodes */
+  display: flex;
+  align-items: center;
+  
+  /* Staggered Entrance Animation */
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slide-in-fade 0.5s ease-out forwards;
+  
+  /* Hardware acceleration - removed will-change to prevent instability */
+  transform: translateX(-20px) translateZ(0);
+}
+
+/* Staggered delay for each node */
+.neural-node:nth-child(1) { animation-delay: 0.1s; }
+.neural-node:nth-child(2) { animation-delay: 0.2s; }
+.neural-node:nth-child(3) { animation-delay: 0.3s; }
+.neural-node:nth-child(4) { animation-delay: 0.4s; }
+.neural-node:nth-child(5) { animation-delay: 0.5s; }
+.neural-node:nth-child(6) { animation-delay: 0.6s; }
+.neural-node:nth-child(7) { animation-delay: 0.7s; }
+.neural-node:nth-child(8) { animation-delay: 0.8s; }
+.neural-node:nth-child(9) { animation-delay: 0.9s; }
+.neural-node:nth-child(10) { animation-delay: 1.0s; }
+.neural-node:nth-child(n+11) { animation-delay: 1.1s; }
+
+@keyframes slide-in-fade {
+  from {
+    opacity: 0;
+    transform: translateX(-20px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateZ(0);
+  }
+}
+
+/* Node Dot - Connection point on the bus */
+.node-dot {
+  position: absolute;
+  left: -40px; /* Position at bus line (accounting for container padding) */
+  width: 6px;
+  height: 6px;
+  background: var(--pastel-blue);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 6px rgba(162, 210, 255, 0.8),
+    0 0 12px rgba(162, 210, 255, 0.4);
+  z-index: 3;
+  /* Center vertically on the card */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Connector Line - Horizontal line connecting dot to card */
+.connector-line {
+  position: absolute;
+  left: -40px; /* Start from bus line */
+  width: 40px; /* Length to reach card */
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--pastel-blue) 0%,
+    var(--pastel-blue-dim) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 3px rgba(162, 210, 255, 0.5);
+  z-index: 2;
+  /* Center vertically */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Hover effects removed */
+
+/* ============================================
+   ACTIVE STATE - First Node (Currently Reading)
+   ============================================ */
+
+/* Active Node - Solid connector line with glow */
+.neural-node.active .connector-line {
+  background: var(--pastel-pink); /* Solid line, no gradient */
+  box-shadow: 
+    0 0 12px rgba(255, 193, 204, 0.8),
+    0 0 24px rgba(255, 193, 204, 0.4);
+  width: 40px;
+  height: 1.5px; /* Slightly thicker */
+}
+
+/* Active Node Dot - Enhanced glow */
+.neural-node.active .node-dot {
+  background: var(--pastel-pink);
+  box-shadow: 
+    0 0 15px rgba(255, 193, 204, 1),
+    0 0 30px rgba(255, 193, 204, 0.6);
+  transform: translateY(-50%) scale(1.4);
+}
+
+/* Active Card Title - Highlight color */
+.neural-node.active .card-title {
+  color: var(--pastel-pink); /* Macaron pink */
+  text-shadow: 
+    0 0 12px rgba(255, 193, 204, 0.8),
+    0 0 20px rgba(255, 193, 204, 0.5);
+}
+
+/* Active Card Border - Enhanced glow */
+.neural-node.active .data-block {
+  border-left-color: var(--pastel-pink);
+  box-shadow: 
+    -3px 0 12px rgba(255, 193, 204, 0.6),
+    -3px 0 20px rgba(255, 193, 204, 0.4),
+    inset -3px 0 6px rgba(255, 193, 204, 0.2);
+}
+
+/* Reading Indicator - Dynamic icon */
+.reading-indicator {
+  display: inline-block;
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  color: var(--pastel-pink);
+  margin-left: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  animation: reading-pulse 1.5s ease-in-out infinite;
+  position: relative;
+}
+
+.reading-indicator::after {
+  content: '...';
+  animation: reading-dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes reading-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    text-shadow: 0 0 8px rgba(255, 193, 204, 0.4);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(255, 193, 204, 0.8);
+  }
+}
+
+@keyframes reading-dots {
+  0%, 20% {
+    content: '';
+  }
+  40% {
+    content: '.';
+  }
+  60% {
+    content: '..';
+  }
+  80%, 100% {
+    content: '...';
+  }
+}
+
+.log-content::-webkit-scrollbar {
+  width: 3px;
+}
+.log-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.log-content::-webkit-scrollbar-thumb {
+  background: var(--pastel-blue-dim);
+}
+
+/* ============================================
+   FLOATING CRYSTAL CARD - Clean Minimal Design
+   ============================================ */
+.data-block {
+  display: block;
+  position: relative;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding: 14px 18px;
+  padding-left: 18px; /* Normal padding, left border will be separate */
+  flex: 1;
+  
+  /* Floating Crystal Background - Ultra-low opacity gradient */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+  
+  /* Fake Glass Effect - No backdrop-filter for performance */
+  /* Use solid background with gradient instead */
+  background: linear-gradient(90deg, rgba(20, 30, 50, 0.6) 0%, rgba(20, 30, 50, 0.3) 100%);
+  
+  /* Left Light Blade Border - 3px wide, glowing */
+  border-left: 3px solid var(--pastel-blue);
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  
+  /* Optimized left border glow - reduced blur radius */
+  box-shadow: 
+    -3px 0 8px rgba(162, 210, 255, 0.5),
+    inset -3px 0 6px rgba(162, 210, 255, 0.2);
+  
+  color: inherit;
+  text-decoration: none !important;
+  /* Removed transition to prevent instability */
+  text-align: left;
+  overflow: hidden;
+  border-radius: 0; /* Sharp edges for crystal look */
+  
+  /* Hardware acceleration - removed will-change to prevent instability */
+  transform: translateZ(0);
+}
+
+/* Remove old pseudo-elements (broken borders) */
+.data-block::before,
+.data-block::after {
+  display: none;
+}
+
+/* Tick Marks (Ruler Marks) - Vertical scale on left side */
+/* Note: Tick marks are integrated into the main background-image above */
+
+/* Hover effects removed */
+
+/* Remove bottom border from last card */
+.data-block:last-child {
+  border-bottom: none;
+  padding-bottom: 12px; /* Restore normal padding */
+}
+
+/* Glitch effects removed to prevent instability */
+
+/* ============================================
+   FLOATING CRYSTAL CARD - Two-Row Layout
+   ============================================ */
+
+/* Row 1: Date — ID — Category */
+.card-row-1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.card-date {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px; /* Larger */
+  color: #6b7a8f; /* Deep gray */
+  opacity: 0.8;
+}
+
+.card-separator {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px; /* Larger */
+  color: #6b7a8f;
+  opacity: 0.5;
+}
+
+.card-id {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px; /* Larger */
+  color: #6b7a8f;
+  opacity: 0.8;
+}
+
+.card-category {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px; /* Larger */
+  color: #6b7a8f; /* Same color as other text, no background */
+  background: transparent; /* Remove background */
+  padding: 0; /* Remove padding */
+  border-radius: 0; /* Remove rounded corners */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
+/* Row 2: Title */
+.card-row-2 {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700; /* Bold */
+  font-size: 0.95rem; /* Smaller title */
+  color: var(--pastel-blue); /* Bright color */
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(162, 210, 255, 0.6); /* Optimized for performance */
+  flex: 1;
+  min-width: 0; /* Allow text to shrink if needed */
+}
+
+/* Excerpt - Always hidden */
+.card-excerpt {
+  display: none;
+}
+
+/* Legacy class support (for backward compatibility) */
+.block-id,
+.block-title,
+.block-meta,
+.block-excerpt {
+  /* These are now replaced by card-* classes */
+  display: none;
+}
+
+/* Date in block-meta - Keep as code comment style */
+.block-meta span:first-child {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: #6b7a8f; /* Deep cyan-gray */
+}
+
+/* Category Tags - Capsule Design (second span with // prefix) */
+.block-meta span:last-child {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px; /* Small capsule size */
+  color: #4a5568; /* Dark text on light background */
+  background: rgba(162, 210, 255, 0.3); /* Semi-transparent pastel blue */
+  padding: 2px 8px;
+  border-radius: 10px; /* Rounded capsule shape */
+  display: inline-block;
+  margin-left: 4px;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Sticky Variant - Priority High (Pastel Gradient) */
+.data-block[style*="border-color: var(--neon-red)"],
+.data-block[style*="border-color: var(--accent-color)"] {
+  /* Soft pastel gradient for priority - no backdrop-filter */
+  background: linear-gradient(90deg, rgba(20, 30, 50, 0.7) 0%, rgba(20, 30, 50, 0.4) 100%);
+  /* Removed backdrop-filter for performance */
+  border-left: 1px solid var(--accent-color) !important;
+  box-shadow: -2px 0 8px rgba(205, 180, 219, 0.5); /* Optimized glow */
+}
+/* Hover effects removed */
+
+/* Refined Priority Badge - Soft Pastel Gradient */
+.sys-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+  /* Soft pastel gradient background - no backdrop-filter */
+  background: linear-gradient(135deg, rgba(20, 30, 50, 0.8) 0%, rgba(20, 30, 50, 0.6) 100%);
+  /* Removed backdrop-filter for performance */
+  
+  /* Thin Pastel Border */
+  border-left: 1px solid var(--pastel-purple);
+  border-bottom: 1px solid var(--pastel-purple);
+  
+  color: var(--pastel-purple);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.6rem;
+  padding: 4px 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 
+    0 0 10px rgba(205, 180, 219, 0.6),
+    0 0 15px rgba(162, 210, 255, 0.4); /* Soft dual-color glow */
+  
+  /* Reverse cut corner */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%);
+}
+
+/* ============================================
+   CRT OVERLAY EFFECTS (Full-Screen Atmosphere)
+   ============================================ */
+
+/* Ultra-Fine Scanline Pattern */
+.crt-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  
+  /* 极细密的扫描线 */
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  
+  /* 微弱闪烁动画 */
+  animation: crt-flicker 3s ease-in-out infinite;
+}
+
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+}
+
+/* Enhanced Vignette (stronger darkening) */
+.crt-vignette {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    circle at center,
+    transparent 50%,
+    rgba(26, 26, 46, 0.4) 80%,
+    rgba(26, 26, 46, 0.8) 100%
+  );
+}
+
+/* Film Grain Noise Texture */
+.crt-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+  opacity: 0.15; /* Increased for visibility */
+  animation: noise-shift 0.3s steps(3) infinite;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+@keyframes noise-shift {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(-2%, -2%); }
+  66% { transform: translate(2%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Fine CRT Scanlines */
+.crt-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10001;
+  opacity: 0.3;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sci-fi-dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40vh 1fr;
+    overflow-y: auto;
+  }
+  
+          .visual-core {
+            border-right: none;
+            border-bottom: 1px solid var(--pastel-blue-dim);
+          }
+  
+  .main-title {
+    font-size: 3rem;
+  }
+  
+  .core-overlay {
+    bottom: 30px;
+    left: 30px;
+  }
+  
+  .data-log {
+    height: auto;
+    overflow: visible;
+    border-left: none;
+  }
+  
+  .log-content {
+    padding: 15px 0;
+  }
+  
+  .data-log {
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+}
+
+/* ============================================
+   TAG-BASED COLOR SYSTEM
+   ============================================ */
+
+/* Game Dev - Mint Green */
+.tag-game-dev .node-dot {
+  background: #caffbf;
+  box-shadow: 0 0 6px rgba(202, 255, 191, 0.8), 0 0 12px rgba(202, 255, 191, 0.4);
+}
+.tag-game-dev .connector-line {
+  background: linear-gradient(to right, #caffbf 0%, rgba(202, 255, 191, 0.4) 50%, transparent 100%);
+  box-shadow: 0 0 3px rgba(202, 255, 191, 0.5);
+}
+.tag-game-dev .data-block {
+  border-left-color: #caffbf;
+  box-shadow: -3px 0 8px rgba(202, 255, 191, 0.5), inset -3px 0 6px rgba(202, 255, 191, 0.2);
+}
+.tag-game-dev .card-title {
+  color: #caffbf;
+  text-shadow: 0 0 8px rgba(202, 255, 191, 0.6);
+}
+/* Hover effects removed */
+
+/* AI - Pink */
+.tag-ai .node-dot {
+  background: #ffc1cc;
+  box-shadow: 0 0 6px rgba(255, 193, 204, 0.8), 0 0 12px rgba(255, 193, 204, 0.4);
+}
+.tag-ai .connector-line {
+  background: linear-gradient(to right, #ffc1cc 0%, rgba(255, 193, 204, 0.4) 50%, transparent 100%);
+  box-shadow: 0 0 3px rgba(255, 193, 204, 0.5);
+}
+.tag-ai .data-block {
+  border-left-color: #ffc1cc;
+  box-shadow: -3px 0 8px rgba(255, 193, 204, 0.5), inset -3px 0 6px rgba(255, 193, 204, 0.2);
+}
+.tag-ai .card-title {
+  color: #ffc1cc;
+  text-shadow: 0 0 8px rgba(255, 193, 204, 0.6);
+}
+/* Hover effects removed */
+
+/* Writing - Coral/Orange (different from AI pink) */
+.tag-writing .node-dot {
+  background: #ffb3ba; /* Soft coral/orange */
+  box-shadow: 0 0 6px rgba(255, 179, 186, 0.8), 0 0 12px rgba(255, 179, 186, 0.4);
+}
+.tag-writing .connector-line {
+  background: linear-gradient(to right, #ffb3ba 0%, rgba(255, 179, 186, 0.4) 50%, transparent 100%);
+  box-shadow: 0 0 3px rgba(255, 179, 186, 0.5);
+}
+.tag-writing .data-block {
+  border-left-color: #ffb3ba;
+  box-shadow: -3px 0 8px rgba(255, 179, 186, 0.5), inset -3px 0 6px rgba(255, 179, 186, 0.2);
+  transition: box-shadow 0.2s ease, border-left-color 0.2s ease;
+}
+.tag-writing .card-title {
+  color: #ffb3ba;
+  text-shadow: 0 0 8px rgba(255, 179, 186, 0.6);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* Writing Hover Effect */
+.neural-node.tag-writing:hover .data-block {
+  border-left: 3px solid #ffb3ba !important;
+  box-shadow: 
+    -3px 0 12px rgba(255, 179, 186, 0.8),
+    -3px 0 20px rgba(255, 179, 186, 0.4),
+    inset -3px 0 8px rgba(255, 179, 186, 0.3);
+}
+
+.neural-node.tag-writing:hover .card-title {
+  color: var(--text-main);
+  text-shadow: 
+    0 0 12px rgba(255, 179, 186, 0.8),
+    0 0 20px rgba(255, 179, 186, 0.5);
+}
+
+.neural-node.tag-writing:hover .node-dot {
+  background: #ffb3ba;
+  box-shadow: 
+    0 0 10px rgba(255, 179, 186, 1),
+    0 0 20px rgba(255, 179, 186, 0.6);
+  transform: translateY(-50%) scale(1.2);
+  transition: all 0.2s ease;
+}
+
+.neural-node.tag-writing:hover .connector-line {
+  background: linear-gradient(to right, #ffb3ba 0%, rgba(255, 179, 186, 0.6) 50%, transparent 100%);
+  box-shadow: 0 0 6px rgba(255, 179, 186, 0.7);
+  width: 42px;
+  transition: all 0.2s ease;
+}
+
+/* Programming/Tech - Blue */
+.tag-programming .node-dot,
+.tag-tech .node-dot {
+  background: #a2d2ff;
+  box-shadow: 0 0 6px rgba(162, 210, 255, 0.8), 0 0 12px rgba(162, 210, 255, 0.4);
+}
+.tag-programming .connector-line,
+.tag-tech .connector-line {
+  background: linear-gradient(to right, #a2d2ff 0%, rgba(162, 210, 255, 0.4) 50%, transparent 100%);
+  box-shadow: 0 0 3px rgba(162, 210, 255, 0.5);
+}
+.tag-programming .data-block,
+.tag-tech .data-block {
+  border-left-color: #a2d2ff;
+  box-shadow: -3px 0 8px rgba(162, 210, 255, 0.5), inset -3px 0 6px rgba(162, 210, 255, 0.2);
+  transition: box-shadow 0.2s ease, border-left-color 0.2s ease;
+}
+.tag-programming .card-title,
+.tag-tech .card-title {
+  color: #a2d2ff;
+  text-shadow: 0 0 8px rgba(162, 210, 255, 0.6);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* Programming/Tech Hover Effect */
+.neural-node.tag-programming:hover .data-block,
+.neural-node.tag-tech:hover .data-block {
+  border-left: 3px solid #a2d2ff !important; /* Use full border property to override base style */
+  box-shadow: 
+    -3px 0 12px rgba(162, 210, 255, 0.8),
+    -3px 0 20px rgba(162, 210, 255, 0.4),
+    inset -3px 0 8px rgba(162, 210, 255, 0.3);
+}
+
+.neural-node.tag-programming:hover .card-title,
+.neural-node.tag-tech:hover .card-title {
+  color: var(--text-main);
+  text-shadow: 
+    0 0 12px rgba(162, 210, 255, 0.8),
+    0 0 20px rgba(162, 210, 255, 0.5);
+}
+
+.neural-node.tag-programming:hover .node-dot,
+.neural-node.tag-tech:hover .node-dot {
+  background: #a2d2ff;
+  box-shadow: 
+    0 0 10px rgba(162, 210, 255, 1),
+    0 0 20px rgba(162, 210, 255, 0.6);
+  transform: translateY(-50%) scale(1.2);
+  transition: all 0.2s ease;
+}
+
+.neural-node.tag-programming:hover .connector-line,
+.neural-node.tag-tech:hover .connector-line {
+  background: linear-gradient(to right, #a2d2ff 0%, rgba(162, 210, 255, 0.6) 50%, transparent 100%);
+  box-shadow: 0 0 6px rgba(162, 210, 255, 0.7);
+  width: 42px;
+  transition: all 0.2s ease;
+}
+/* Hover effects removed */
+
+/* Design/Thoughts - Purple */
+.tag-design .node-dot,
+.tag-thoughts .node-dot {
+  background: #cdb4db;
+  box-shadow: 0 0 6px rgba(205, 180, 219, 0.8), 0 0 12px rgba(205, 180, 219, 0.4);
+}
+.tag-design .connector-line,
+.tag-thoughts .connector-line {
+  background: linear-gradient(to right, #cdb4db 0%, rgba(205, 180, 219, 0.4) 50%, transparent 100%);
+  box-shadow: 0 0 3px rgba(205, 180, 219, 0.5);
+}
+.tag-design .data-block,
+.tag-thoughts .data-block {
+  border-left-color: #cdb4db;
+  box-shadow: -3px 0 8px rgba(205, 180, 219, 0.5), inset -3px 0 6px rgba(205, 180, 219, 0.2);
+}
+.tag-design .card-title,
+.tag-thoughts .card-title {
+  color: #cdb4db;
+  text-shadow: 0 0 8px rgba(205, 180, 219, 0.6);
+}
+/* Hover effects removed */
+
+/* Tutorial - Cream */
+.tag-tutorial .node-dot {
+  background: #fdffb6;
+  box-shadow: 0 0 6px rgba(253, 255, 182, 0.8), 0 0 12px rgba(253, 255, 182, 0.4);
+}
+.tag-tutorial .connector-line {
+  background: linear-gradient(to right, #fdffb6 0%, rgba(253, 255, 182, 0.4) 50%, transparent 100%);
+  box-shadow: 0 0 3px rgba(253, 255, 182, 0.5);
+}
+.tag-tutorial .data-block {
+  border-left-color: #fdffb6;
+  box-shadow: -3px 0 8px rgba(253, 255, 182, 0.5), inset -3px 0 6px rgba(253, 255, 182, 0.2);
+}
+.tag-tutorial .card-title {
+  color: #fdffb6;
+  text-shadow: 0 0 8px rgba(253, 255, 182, 0.6);
+}
+/* Hover effects removed */
+
+/* Literature - Pink */
+.tag-literature .node-dot {
+  background: #ffc1cc;
+  box-shadow: 0 0 6px rgba(255, 193, 204, 0.8), 0 0 12px rgba(255, 193, 204, 0.4);
+}
+.tag-literature .connector-line {
+  background: linear-gradient(to right, #ffc1cc 0%, rgba(255, 193, 204, 0.4) 50%, transparent 100%);
+  box-shadow: 0 0 3px rgba(255, 193, 204, 0.5);
+}
+.tag-literature .data-block {
+  border-left-color: #ffc1cc;
+  box-shadow: -3px 0 8px rgba(255, 193, 204, 0.5), inset -3px 0 6px rgba(255, 193, 204, 0.2);
+}
+.tag-literature .card-title {
+  color: #ffc1cc;
+  text-shadow: 0 0 8px rgba(255, 193, 204, 0.6);
+}
+/* Hover effects removed */
+
+/* Default - Blue (for posts without recognized tags) */
+.tag-default .node-dot,
+.neural-node:not([class*="tag-ai"]):not([class*="tag-writing"]):not([class*="tag-game-dev"]):not([class*="tag-literature"]):not([class*="tag-programming"]):not([class*="tag-tech"]):not([class*="tag-design"]):not([class*="tag-tutorial"]):not([class*="tag-thoughts"]) .node-dot {
+  background: #a2d2ff;
+  box-shadow: 0 0 6px rgba(162, 210, 255, 0.8), 0 0 12px rgba(162, 210, 255, 0.4);
+}
+.tag-default .connector-line,
+.neural-node:not([class*="tag-ai"]):not([class*="tag-writing"]):not([class*="tag-game-dev"]):not([class*="tag-literature"]):not([class*="tag-programming"]):not([class*="tag-tech"]):not([class*="tag-design"]):not([class*="tag-tutorial"]):not([class*="tag-thoughts"]) .connector-line {
+  background: linear-gradient(to right, #a2d2ff 0%, rgba(162, 210, 255, 0.4) 50%, transparent 100%);
+  box-shadow: 0 0 3px rgba(162, 210, 255, 0.5);
+}
+.tag-default .data-block,
+.neural-node:not([class*="tag-ai"]):not([class*="tag-writing"]):not([class*="tag-game-dev"]):not([class*="tag-literature"]):not([class*="tag-programming"]):not([class*="tag-tech"]):not([class*="tag-design"]):not([class*="tag-tutorial"]):not([class*="tag-thoughts"]) .data-block {
+  border-left-color: #a2d2ff;
+  box-shadow: -3px 0 8px rgba(162, 210, 255, 0.5), inset -3px 0 6px rgba(162, 210, 255, 0.2);
+}
+.tag-default .card-title,
+.neural-node:not([class*="tag-ai"]):not([class*="tag-writing"]):not([class*="tag-game-dev"]):not([class*="tag-literature"]):not([class*="tag-programming"]):not([class*="tag-tech"]):not([class*="tag-design"]):not([class*="tag-tutorial"]):not([class*="tag-thoughts"]) .card-title {
+  color: #a2d2ff;
+  text-shadow: 0 0 8px rgba(162, 210, 255, 0.6);
+}
+/* Hover effects removed */

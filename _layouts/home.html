@@ -1,140 +1,161 @@
 ---
-layout: page
+layout: null
 ---
+<!DOCTYPE html>
+<html lang="{{ page.language | default: site.language | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ site.title }} - TERMINAL ACCESS</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ '/assets/css/cyberpunk-home.css' | relative_url }}">
+  
+  <!-- Three.js (Required for Tesseract) - Using stable r128 version -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
 
-{{ content }}
+  <!-- CRT Overlay Effects -->
+  <div class="crt-overlay"></div>
+  <div class="crt-vignette"></div>
 
-{% assign sticky_posts = site.posts | where: "sticky", true | sort: "date" | reverse %}
-{% assign normal_posts = site.posts | where_exp: "post", "post.sticky != true" | sort: "date" | reverse %}
+  <!-- Main Dashboard Container -->
+  <div class="sci-fi-dashboard">
+    
+    <!-- LEFT: Visual Core (3D Tesseract) -->
+    <div class="visual-core">
+      <div id="tesseract-container"></div>
+      
+      <div class="core-overlay">
+        <h1 class="main-title neon-text">{{ site.title }}</h1>
+        <div class="system-status">
+          SYS_STATUS: <span class="status-online">ONLINE</span><br>
+          USER: GUEST_ACCESS<br>
+          <span class="blink">CONNECTING_TO_NEURAL_NET...</span>
+        </div>
+      </div>
+    </div>
 
-<!-- 置顶文章列表 -->
-{% if sticky_posts.size > 0 %}
-<hr class="sticky-divider">
-<div class="sticky-posts">
-  <h3 class="sticky-header">置顶</h3>
-  <ul class="sticky-list list-unstyled" role="list">
-    {% for post in sticky_posts %}
-      <li class="sticky-item">
-        <a href="{{ post.url | absolute_url }}">
-          <span class="sticky-badge">Top</span>
-          {{ post.title | strip_html }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
-</div>
-<hr class="sticky-divider">
-{% endif %}
-
-<!-- 普通文章列表 -->
-<ul class="posts-list list-unstyled" role="list">
-  {% for post in normal_posts %}
-    <li class="post-preview">
-      <article>
-        {%- capture thumbnail -%}
-          {% if post.thumbnail-img %}
-            {{ post.thumbnail-img }}
-          {% elsif post.cover-img %}
-            {% if post.cover-img.first %}
-              {{ post.cover-img[0].first.first }}
-            {% else %}
-              {{ post.cover-img }}
+    <!-- RIGHT: Data Log (Posts) -->
+    <div class="data-log">
+      <div class="log-header">
+        <h2>// DATA_LOG_STREAM</h2>
+        <span class="blink">_REC</span>
+      </div>
+      
+      <div class="log-content">
+        <!-- Neural Bus Line - Main vertical bus -->
+        <div class="neural-bus-line"></div>
+        
+        <!-- Neural Data Tree Container -->
+        <div class="neural-tree-container">
+          <!-- Sticky Posts -->
+          {% assign sticky_posts = site.posts | where: "sticky", true | sort: "date" | reverse %}
+          {% assign first_post = true %}
+          {% for post in sticky_posts %}
+            {% comment %} Tag Priority System: Check tags in priority order {% endcomment %}
+            {% assign selected_tag = 'default' %}
+            {% if post.tags contains 'AI' or post.tags contains 'ai' %}
+              {% assign selected_tag = 'ai' %}
+            {% elsif post.tags contains 'Writing' or post.tags contains 'writing' %}
+              {% assign selected_tag = 'writing' %}
+            {% elsif post.tags contains 'Game Dev' or post.tags contains 'game-dev' or post.tags contains 'GameDev' %}
+              {% assign selected_tag = 'game-dev' %}
+            {% elsif post.tags contains 'Novel' or post.tags contains 'novel' or post.tags contains 'Literature' or post.tags contains 'literature' %}
+              {% assign selected_tag = 'literature' %}
+            {% elsif post.tags contains 'Programming' or post.tags contains 'programming' or post.tags contains 'Tech' or post.tags contains 'tech' %}
+              {% assign selected_tag = 'programming' %}
+            {% elsif post.tags contains 'Design' or post.tags contains 'design' %}
+              {% assign selected_tag = 'design' %}
+            {% elsif post.tags contains 'Tutorial' or post.tags contains 'tutorial' %}
+              {% assign selected_tag = 'tutorial' %}
+            {% elsif post.tags contains 'Thoughts' or post.tags contains 'thoughts' or post.tags contains 'diary' or post.tags contains 'Diary' %}
+              {% assign selected_tag = 'thoughts' %}
             {% endif %}
-          {% else %}
-          {% endif %}
-        {% endcapture %}
-        {% assign thumbnail=thumbnail | strip %}
+            <div class="neural-node{% if first_post %} active{% endif %} tag-{{ selected_tag }}">
+              <div class="node-dot"></div>
+              <div class="connector-line"></div>
+              <a href="{{ post.url | absolute_url }}" class="data-block" data-priority="high" data-tag="{{ selected_tag }}">
+                <div class="card-row-1">
+                  <span class="card-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                  <span class="card-separator">—</span>
+                  <span class="card-id">ID: {{ post.date | date: "%Y%m%d" }}.STK</span>
+                  <span class="card-separator">—</span>
+                  <span class="card-category">{{ post.categories | join: ', ' | default: 'UNCATEGORIZED' }}</span>
+                </div>
+                <div class="card-row-2">
+                  <h3 class="card-title">{{ post.title | strip_html }}</h3>
+                  {% if first_post %}<span class="reading-indicator">READING...</span>{% endif %}
+                </div>
+                <p class="card-excerpt">
+                  {{ post.excerpt | strip_html | truncatewords: 20 }}
+                </p>
+              </a>
+            </div>
+            {% assign first_post = false %}
+          {% endfor %}
 
-        {% if site.feed_show_excerpt == false %}
-        {% if thumbnail != "" %}
-        <div class="post-image post-image-normal">
-          <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-            <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-          </a>
+          <!-- Normal Posts -->
+          {% assign normal_posts = site.posts | where_exp: "post", "post.sticky != true" | sort: "date" | reverse %}
+          {% for post in normal_posts %}
+            {% comment %} Tag Priority System: Check tags in priority order {% endcomment %}
+            {% assign selected_tag = 'default' %}
+            {% if post.tags contains 'AI' or post.tags contains 'ai' %}
+              {% assign selected_tag = 'ai' %}
+            {% elsif post.tags contains 'Writing' or post.tags contains 'writing' %}
+              {% assign selected_tag = 'writing' %}
+            {% elsif post.tags contains 'Game Dev' or post.tags contains 'game-dev' or post.tags contains 'GameDev' %}
+              {% assign selected_tag = 'game-dev' %}
+            {% elsif post.tags contains 'Novel' or post.tags contains 'novel' or post.tags contains 'Literature' or post.tags contains 'literature' %}
+              {% assign selected_tag = 'literature' %}
+            {% elsif post.tags contains 'Programming' or post.tags contains 'programming' or post.tags contains 'Tech' or post.tags contains 'tech' %}
+              {% assign selected_tag = 'programming' %}
+            {% elsif post.tags contains 'Design' or post.tags contains 'design' %}
+              {% assign selected_tag = 'design' %}
+            {% elsif post.tags contains 'Tutorial' or post.tags contains 'tutorial' %}
+              {% assign selected_tag = 'tutorial' %}
+            {% elsif post.tags contains 'Thoughts' or post.tags contains 'thoughts' or post.tags contains 'diary' or post.tags contains 'Diary' %}
+              {% assign selected_tag = 'thoughts' %}
+            {% endif %}
+            <div class="neural-node{% if first_post %} active{% endif %} tag-{{ selected_tag }}">
+              <div class="node-dot"></div>
+              <div class="connector-line"></div>
+              <a href="{{ post.url | absolute_url }}" class="data-block" data-tag="{{ selected_tag }}">
+                <div class="card-row-1">
+                  <span class="card-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                  <span class="card-separator">—</span>
+                  <span class="card-id">ID: {{ post.date | date: "%Y%m%d" }}.{{ forloop.index }}</span>
+                  <span class="card-separator">—</span>
+                  <span class="card-category">{{ post.categories | join: ', ' | default: 'DATA_STREAM' }}</span>
+                </div>
+                <div class="card-row-2">
+                  <h3 class="card-title">{{ post.title | strip_html }}</h3>
+                  {% if first_post %}<span class="reading-indicator">READING...</span>{% endif %}
+                </div>
+                <p class="card-excerpt">
+                  {{ post.excerpt | strip_html | truncatewords: 20 }}
+                </p>
+              </a>
+            </div>
+            {% assign first_post = false %}
+          {% endfor %}
         </div>
-        {% endif %}
-        {% endif %}
-
-        <a href="{{ post.url | absolute_url }}">
-          <h2 class="post-title">{{ post.title | strip_html }}</h2>
-
-          {% if post.subtitle %}
-            <h3 class="post-subtitle">
-            {{ post.subtitle | strip_html }}
-            </h3>
-          {% endif %}
-        </a>
-
-        {% if post.author %}
-          <span>By <strong>{{ post.author | strip_html }}</strong></span>
-        {% endif %}
-        <p class="post-meta">
-          {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
-          Posted on {{ post.date | date: date_format }}
-        </p>
-
-        {% if thumbnail != "" %}
-        <div class="post-image post-image-small">
-          <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-            <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-          </a>
+        
+        <div style="text-align: center; opacity: 0.5; margin-top: 20px; font-size: 0.8rem; padding-left: 40px;">
+          -- END OF STREAM --
         </div>
-        {% endif %}
+      </div>
+    </div>
+    
+  </div>
 
-        {% unless site.feed_show_excerpt == false %}
-        {% if thumbnail != "" %}
-        <div class="post-image post-image-short">
-          <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-            <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-          </a>
-        </div>
-        {% endif %}
+  <!-- Scripts -->
+  <script src="{{ '/assets/js/tesseract-hero.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/cyberpunk-effects.js' | relative_url }}"></script>
 
-        <div class="post-entry">
-          {% assign excerpt_length = site.excerpt_length | default: 50 %}
-          {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
-          {% assign excerpt_word_count = post.excerpt | number_of_words %}
-          {% if post.content != post.excerpt or excerpt_word_count > excerpt_length %}
-            <a href="{{ post.url | absolute_url }}" class="post-read-more">[Read&nbsp;More]</a>
-          {% endif %}
-        </div>
-        {% endunless %}
-
-        {% if site.feed_show_tags != false and post.tags.size > 0 %}
-        <div class="blog-tags">
-          <span>Tags:</span>
-          <ul class="d-inline list-inline" role="list">
-            {% for tag in post.tags %}
-            <li class="list-inline-item">
-              <a href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% endif %}
-
-      </article>
-    </li>
-  {% endfor %}
-</ul>
-
-{% if paginator.total_pages > 1 %}
-<ul class="pagination main-pager">
-  {% if paginator.previous_page %}
-  <li class="page-item previous">
-    <a class="page-link" href="{{ paginator.previous_page_path | absolute_url }}">
-      <i class="fas fa-arrow-left" alt="Newer Posts"></i>
-      <span class="d-none d-sm-inline-block">Newer Posts</span>
-    </a>
-  </li>
-  {% endif %}
-  {% if paginator.next_page %}
-  <li class="page-item next">
-    <a class="page-link" href="{{ paginator.next_page_path | absolute_url }}">
-      <span class="d-none d-sm-inline-block">Older Posts</span>
-      <i class="fas fa-arrow-right" alt="Older Posts"></i>
-    </a>
-  </li>
-  {% endif %}
-</ul>
-{% endif %}
+</body>
+</html>

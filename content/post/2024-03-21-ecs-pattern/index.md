@@ -2,7 +2,7 @@
 title: "ECS模式：游戏开发中的组件化架构"
 date: 2024-03-21
 draft: false
-tags: ["游戏开发", "架构设计", "ECS"]
+tags: ["Game Dev"]
 categories: ["技术"]
 ---
 
