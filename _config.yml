@@ -12,6 +12,9 @@
 # Name of website
 title: POCASTER'S BLOG
 
+# Website URL (used for generating absolute URLs)
+url: "https://www.inevitable-event.com"
+
 # Your name to show in the footer
 author: POCASTER / Inevitable-Event Studio
 
