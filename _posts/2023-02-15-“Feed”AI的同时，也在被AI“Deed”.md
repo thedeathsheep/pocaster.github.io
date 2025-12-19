@@ -1,9 +1,9 @@
----
+﻿---
 layout: post
 title: “Feed”AI的同时，也在被AI“Feed”
 cover-img: /assets/img/cover02.jpg
 share-img: /assets/img/cover02.jpg
-tags: [AI, Agent, Public, Philosophy]
+tags: [AI, Agent, Philosophy]
 author: pocaster
 ---
 

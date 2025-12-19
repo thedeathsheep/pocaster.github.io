@@ -6,7 +6,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;600&display=swap');
 
 /* Global Reset */
-body, html {
+/* Note: This CSS file should only be loaded on the home page (home.html) */
+/* It has been removed from global site-css to prevent affecting other pages */
+/* Only apply these styles when body has cyberpunk-page class */
+body.cyberpunk-page, 
+body.cyberpunk-page html {
   margin: 0;
   padding: 0;
   width: 100vw;

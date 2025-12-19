@@ -1,10 +1,10 @@
----
+﻿---
 layout: post
 title: 2D物理效果代码实现思路(4)DeltaTime
 cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Gamedev, Public]
+tags: [Game Dev]
 author: pocaster
 mathjax: true
 ---

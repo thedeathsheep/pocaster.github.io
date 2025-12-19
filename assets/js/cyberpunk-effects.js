@@ -7,6 +7,11 @@
 
   // Initialize all effects when DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
+    // Only run on home page (cyberpunk-page)
+    if (!document.body.classList.contains('cyberpunk-page')) {
+      return;
+    }
+    
     // initCustomCursor(); // Disabled - custom cursor removed
     initTypingEffect();
     initRippleEffect();

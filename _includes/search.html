@@ -8,11 +8,35 @@
   
   <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
   <script>
-    SimpleJekyllSearch({
-      searchInput: document.getElementById('nav-search-input'),
-      resultsContainer: document.getElementById('search-results-container'),
-      json: '{{ site.baseurl }}/assets/data/searchcorpus.json' 
-    });
+    (function() {
+      // Construct absolute URL for the JSON file
+      var siteUrl = '{{ site.url }}' || window.location.origin;
+      var jsonPath = siteUrl + '{{ "/assets/data/searchcorpus.json" | relative_url }}';
+      
+      // Fallback to relative path if absolute URL construction fails
+      if (!jsonPath || jsonPath.indexOf('undefined') !== -1) {
+        jsonPath = '{{ "/assets/data/searchcorpus.json" | relative_url }}';
+        if (!jsonPath || jsonPath === '') {
+          jsonPath = '/assets/data/searchcorpus.json';
+        }
+      }
+      
+      console.log('Loading search corpus from:', jsonPath);
+      
+      SimpleJekyllSearch({
+        searchInput: document.getElementById('nav-search-input'),
+        resultsContainer: document.getElementById('search-results-container'),
+        json: jsonPath,
+        searchError: function(err) {
+          console.error('Search error:', err);
+          console.error('Attempted JSON path:', jsonPath);
+          console.error('Current location:', window.location.href);
+        },
+        noResultsText: 'No results found',
+        limit: 10,
+        fuzzy: false
+      });
+    })();
   </script>
 </div>
 

@@ -1,10 +1,10 @@
----
+﻿---
 layout: post
 title: 2D物理(15) LocalSpace&WorldSpace
 cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Gamedev, Public, AI]
+tags: [Game Dev, AI]
 author: pocaster
 mathjax: true
 ---

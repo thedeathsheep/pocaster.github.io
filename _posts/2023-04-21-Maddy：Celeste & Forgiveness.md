@@ -1,10 +1,10 @@
----
+﻿---
 layout: post
 title: Maddy：Celeste & Forgiveness
 cover-img: /assets/img/celeste.png
 thumbnail-img: /assets/img/celeste.png
 share-img: /assets/img/celeste.png
-tags: [Cite, Game, Public]
+tags: [Game, Cite]
 author: Maddy
 ---
 

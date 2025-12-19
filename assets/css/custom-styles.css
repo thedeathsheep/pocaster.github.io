@@ -73,6 +73,51 @@ html {
     scroll-behavior: smooth;
 }
 
+/* ============================================
+   强制覆盖：确保所有非首页页面可以滚动
+   ============================================ */
+/* 这些规则必须放在最后，使用!important确保最高优先级 */
+
+/* 覆盖body和html的overflow和height限制 - 使用最高优先级 */
+html:not(.cyberpunk-page),
+body:not(.cyberpunk-page) {
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+body:not(.cyberpunk-page) {
+    min-height: 100vh !important;
+}
+
+/* 确保所有容器都可以正常显示和滚动 */
+body:not(.cyberpunk-page) main,
+body:not(.cyberpunk-page) .container-md,
+body:not(.cyberpunk-page) .container-fluid,
+body:not(.cyberpunk-page) .row,
+body:not(.cyberpunk-page) [class*="col-"],
+body:not(.cyberpunk-page) .blog-post,
+body:not(.cyberpunk-page) .page-content {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+/* 覆盖可能的overflow-hidden类（来自搜索框等） */
+body:not(.cyberpunk-page).overflow-hidden {
+    overflow: visible !important;
+    overflow-y: visible !important;
+}
+
+/* 确保页面内容区域可以正常滚动 */
+body:not(.cyberpunk-page) .container-md > .row,
+body:not(.cyberpunk-page) .container-fluid > .row {
+    overflow: visible !important;
+    height: auto !important;
+}
+
 /* 目录样式 */
 .post-content h3 {
     scroll-margin-top: 100px; /* 为固定导航栏留出空间 */

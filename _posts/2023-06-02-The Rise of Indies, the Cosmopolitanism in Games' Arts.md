@@ -1,10 +1,10 @@
----
+﻿---
 layout: post
 title: The Rise of Indies, the Cosmopolitanism in Games' Arts
 cover-img: /assets/img/0026716027_0.jpg
 thumbnail-img: /assets/img/0026716027_0.jpg
 share-img: /assets/img/0026716027_0.jpg
-tags: [Source, Gamedev, Public]
+tags: [Game Dev, Source]
 author: GraceWay
 ---
 

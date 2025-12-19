@@ -7,7 +7,7 @@ layout: null
 "title"    : "{% if post.title != "" %}{{ post.title | strip_html | escape }}{% else %}{{ post.excerpt | strip_html | escape | strip }}{%endif%}", 
 "desc"     : "{% if post.title != "" %}{{ post.title | strip_html | escape }}{% else %}{{ post.excerpt | strip_html | escape | strip }}{%endif%}", 
 "category" : "{{ post.tags | join: ', ' }}", 
-"url"      : "{{ site.baseurl }}{{ post.url | escape }}", 
+"url"      : "{{ post.url | relative_url | escape }}", 
 "date"     : "{{ post.date | date: "%B %e, %Y" | default: "January 1, 1970" }}" 
 }, 
 {% endfor %} 
@@ -16,7 +16,7 @@ layout: null
 "title"    : "{% if page.title != "" %}{{ page.title | strip_html | escape }}{% else %}{{ page.excerpt | strip_html | escape | strip }}{% endif %}", 
 "desc"     : "{% if page.title != "" %}{{ page.title | strip_html | escape }}{% else %}{{ page.excerpt | strip_html | escape | strip }}{% endif %}", 
 "category" : "{% if page.tags %}{{ page.tags | join: ', ' }}{% else %}page{% endif %}", 
-"url"      : "{{ site.baseurl }}{{ page.url }}", 
+"url"      : "{{ page.url | relative_url }}", 
 "date"     : "{{ page.date | date: '%B %e, %Y' | default: "January 1, 1970" }}" 
 }{% unless forloop.last %},{% endunless %} 
 {% endif %}{% endfor %} 

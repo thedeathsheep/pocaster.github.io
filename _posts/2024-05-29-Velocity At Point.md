@@ -1,9 +1,9 @@
----
+﻿---
 layout: post
 title: 2D物理(22) Velocity At Point
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Gamedev, Public, AI]
+tags: [Game Dev, AI]
 author: pocaster
 mathjax: true
 ---

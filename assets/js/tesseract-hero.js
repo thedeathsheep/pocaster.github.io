@@ -16,10 +16,14 @@
   let containerElement;
 
   function initTesseract() {
+    // Only run on home page (cyberpunk-page)
+    if (!document.body.classList.contains('cyberpunk-page')) {
+      return;
+    }
+    
     const container = document.getElementById('tesseract-container');
     if (!container) {
-      console.warn('Container not found, retrying...');
-      setTimeout(initTesseract, 100);
+      // Silently return if container not found (not on home page)
       return;
     }
 
