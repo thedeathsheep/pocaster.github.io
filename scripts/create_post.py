@@ -1,16 +1,21 @@
 # %% [markdown]
 # # 博客文章创建工具
-# 
+#
 # 这个脚本可以帮助你快速创建新的博客文章。运行下面的代码块即可开始。
+# 使用方式：在项目根目录执行 `python scripts/create_post.py`，或在任意目录运行（脚本会自动定位项目根）。
 
 # %%
 import os
 from datetime import datetime
 import sys
 
+# Project root: parent of scripts/
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(_SCRIPT_DIR)
+
 # %% [markdown]
 # ## 创建新文章
-# 
+#
 # 运行下面的代码块，设置文章标题和日期即可创建新文章。
 
 # %%
@@ -18,11 +23,11 @@ def create_new_post(title, date_str="today"):
     # 处理日期
     if date_str.lower() == "today":
         date_str = datetime.now().strftime("%Y-%m-%d")
-    
-    # 创建文件名
+
+    # 创建文件名（_posts 在项目根下）
     filename = f"{date_str}-{title}.md"
-    filepath = os.path.join("_posts", filename)
-    
+    filepath = os.path.join(ROOT, "_posts", filename)
+
     # 创建头信息
     header = f"""---
 layout: post
@@ -38,11 +43,11 @@ mermaid: true
 ---
 
 """
-    
+
     # 写入文件
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(header)
-    
+
     print(f"Created new post: {filepath}")
     return filepath
 
@@ -57,16 +62,16 @@ print(f"\n文件已创建：{filepath}")
 
 # %% [markdown]
 # ## 使用说明
-# 
+#
 # 1. 在代码块中修改 `title` 和 `date_str` 变量的值
 #    - `title`: 文章标题
-#    - `date_str`: 
+#    - `date_str`:
 #      - 使用 "today" 表示当前日期
 #      - 或者输入具体日期，格式为 YYYY-MM-DD
 # 2. 运行代码块即可创建新文章
 # 3. 可以重复运行代码块创建多篇文章
-# 
+#
 # 提示：在 VS Code 中，你可以：
 # - 使用 `# %%` 分隔代码块
 # - 点击代码块上方的 "Run Cell" 按钮运行
-# - 使用快捷键 `Shift + Enter` 运行当前代码块 
+# - 使用快捷键 `Shift + Enter` 运行当前代码块

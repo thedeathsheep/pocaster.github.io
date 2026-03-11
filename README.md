@@ -33,15 +33,15 @@
    ```bash
    bundle exec jekyll serve
    ```
-5. 访问 `http://localhost:4000` 预览网站
+5. 访问 `http://localhost:4010` 预览网站（端口见 `_config.yml` 中的 `port`）
 
-## 内容结构
+## 项目结构
 
-- `_posts/` - 博客文章目录
-- `_layouts/` - 页面布局模板
-- `_includes/` - 可重用的页面组件
-- `assets/` - 图片、CSS 等静态资源
-- `_config.yml` - 网站配置文件
+- **`_posts/`**、**`_drafts/`**：正式文章与草稿（仅此两处；草稿不会发布，本地预览可用 `bundle exec jekyll serve --drafts`）
+- **`_layouts/`**、**`_includes/`**、**`_data/`**：主题与站点模板、数据（如 `_data/ui-text.yml`）
+- **`assets/`**：样式、脚本、图片；主题文件与站点自定义文件说明见 [assets/README.md](assets/README.md)
+- **`scripts/`**：建站与内容相关脚本（如 `create_post.py`），建议在项目根目录执行 `python scripts/create_post.py`
+- **根目录**：`_config.yml`、`index.html`、`aboutme.md`、`404.html`、`tags.html`、`feed.xml`、`CNAME` 等 Jekyll/Pages 约定文件，请勿移动
 
 ## 联系方式
 

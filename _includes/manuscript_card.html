@@ -1,0 +1,14 @@
+<a href="{{ include.post.url | absolute_url }}" class="manuscript-card">
+  <span class="card-date">{{ include.post.date | date: "%Y-%m-%d" }}</span>
+  <h3 class="card-title">{{ include.post.title | strip_html }}</h3>
+  {% if include.post.excerpt %}
+  <p class="card-excerpt">{{ include.post.excerpt | strip_html | truncatewords: 18 }}</p>
+  {% endif %}
+  {% if include.post.tags.size > 0 %}
+  <div class="manuscript-tags">
+    {% for tag in include.post.tags limit: 4 %}
+    <span class="manuscript-tag {% if tag == 'Diary' or tag == 'Thoughts' %}tag-sticky{% endif %}">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+</a>

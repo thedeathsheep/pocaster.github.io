@@ -1,0 +1,7 @@
+<a href="{{ include.post.url | absolute_url }}" class="term-line">
+  <span class="date">{{ include.post.date | date: "%Y-%m-%d" }}</span>
+  <span class="filename">{{ include.post.title | strip_html }}</span>
+  {% if include.post.tags.size > 0 %}
+  <span class="tags">[{{ include.post.tags | join: ", " }}]</span>
+  {% endif %}
+</a>

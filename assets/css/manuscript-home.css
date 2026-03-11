@@ -1,0 +1,190 @@
+/* ============================================
+   Manuscript / Study Home - Paper & Ink
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+
+:root {
+  --paper: #f5f0e6;
+  --paper-shadow: #e8e2d5;
+  --ink: #2c2c2c;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #6b6b6b;
+  --accent-ink: #1a3d5c;
+  --sepia: #8b7355;
+  --tag-ink: #3d2c1f;
+  --tag-bg: rgba(139, 115, 85, 0.12);
+  --sticky-yellow: #fef9c3;
+  --sticky-border: #e5e0a0;
+  --card-hover: rgba(26, 61, 92, 0.06);
+  --font-serif: 'Noto Serif SC', serif;
+  --font-sans: 'Noto Sans SC', sans-serif;
+}
+
+body.manuscript-home {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  background-image:
+    linear-gradient(rgba(139, 115, 85, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 115, 85, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Header */
+.manuscript-header {
+  padding: 2rem 2rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--paper-shadow);
+}
+
+.manuscript-header h1 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--ink);
+  margin: 0 0 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+.manuscript-header .subtitle {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+/* Two-column layout */
+.manuscript-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 3rem;
+}
+
+@media (max-width: 768px) {
+  .manuscript-columns {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
+
+.manuscript-col {
+  padding: 0 1.25rem;
+}
+
+.manuscript-col:first-child {
+  border-right: 1px solid var(--paper-shadow);
+}
+
+@media (max-width: 768px) {
+  .manuscript-col:first-child {
+    border-right: none;
+    border-bottom: 1px solid var(--paper-shadow);
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* Column titles */
+.manuscript-col-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--accent-ink);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.08em;
+}
+
+/* Post card - letter / paper */
+.manuscript-card {
+  display: block;
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.75rem;
+  background: #fdfcfa;
+  border: 1px solid var(--paper-shadow);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.manuscript-card:hover {
+  background: var(--card-hover);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.manuscript-card .card-date {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  margin-bottom: 0.35rem;
+}
+
+.manuscript-card .card-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  margin: 0 0 0.4rem;
+  line-height: 1.35;
+}
+
+.manuscript-card .card-excerpt {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tags - ink stain / sticky note */
+.manuscript-tags {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.manuscript-tag {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1px;
+  background: var(--tag-bg);
+  color: var(--tag-ink);
+  border: 1px solid rgba(139, 115, 85, 0.25);
+  transition: background 0.2s ease;
+}
+
+.manuscript-card:hover .manuscript-tag {
+  background: rgba(139, 115, 85, 0.18);
+}
+
+/* Sticky-note variant for some tags (optional) */
+.manuscript-tag.tag-sticky {
+  background: var(--sticky-yellow);
+  border-color: var(--sticky-border);
+  color: #5c4a1a;
+}
+
+/* Section empty state */
+.manuscript-empty {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  font-style: normal;
+  padding: 1rem 0;
+}
