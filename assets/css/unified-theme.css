@@ -1,0 +1,608 @@
+/* ============================================
+   Unified theme: geek/terminal style (match homepage)
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* Terminal palette (same as homepage) */
+body.site-theme-unified {
+  --term-fg: #9ae6b0;
+  --term-dim: #94a3b8;
+  --term-prompt: #7dd3fc;
+  --term-link: #9ae6b0;
+  --term-link-hover: #6ee7b7;
+  --term-border: #334155;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', 'Consolas', monospace;
+}
+
+/* Hide center avatar (猫猫头) in navbar on all pages */
+.navbar-custom .avatar-container {
+  display: none !important;
+}
+
+/* Same background image + overlay as homepage */
+.term-bg--pages {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background-color: #1a1520;
+  background-image: url('/assets/img/0025160427_0.jpg');
+  background-repeat: no-repeat;
+  background-position: center calc(50% - 10px);
+  background-size: auto 70vh;
+}
+
+.term-overlay--pages {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(13, 17, 23, 0.82);
+}
+
+/* Content above overlay */
+body.site-theme-unified .navbar-custom,
+body.site-theme-unified header,
+body.site-theme-unified main,
+body.site-theme-unified footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* Less top space for flat nav (no big bar) */
+body.site-theme-unified .navbar.navbar-custom {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Article header: no cover image, compact title block to match homepage tone */
+body.site-theme-unified #header-big-imgs {
+  display: none !important;
+}
+
+body.site-theme-unified .intro-header.big-img,
+body.site-theme-unified .header-section.has-img .intro-header {
+  background: transparent !important;
+  background-image: none !important;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+body.site-theme-unified .intro-header.big-img .big-img-transition {
+  display: none !important;
+}
+
+body.site-theme-unified .intro-header.big-img .post-heading,
+body.site-theme-unified .intro-header .post-heading {
+  padding: 1.5rem 0 1rem !important;
+  text-shadow: none;
+}
+
+body.site-theme-unified .intro-header .post-heading h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+body.site-theme-unified .intro-header .post-heading .post-meta {
+  font-size: 0.9rem;
+  color: var(--term-dim);
+}
+
+/* Page layout (e.g. aboutme): terminal-style header */
+body.site-theme-unified .intro-header .page-heading h1,
+body.site-theme-unified .intro-header .page-heading .page-subheading {
+  color: var(--term-fg);
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified .intro-header .page-heading {
+  padding: 1.5rem 0 1rem !important;
+  text-shadow: none;
+}
+
+body.site-theme-unified .intro-header .page-heading h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+body.site-theme-unified .intro-header .page-heading .page-subheading {
+  font-size: 1rem;
+  color: var(--term-dim);
+}
+
+body.site-theme-unified .intro-header .img-desc {
+  display: none !important;
+}
+
+body.site-theme-unified {
+  background: transparent;
+  color: var(--term-fg);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+body.site-theme-unified a {
+  color: var(--term-link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+body.site-theme-unified a:hover,
+body.site-theme-unified a:focus {
+  color: var(--term-link-hover);
+  text-decoration: underline;
+}
+
+/* Nav: terminal-style strip – prompt + command links */
+body.site-theme-unified .navbar-custom {
+  background: transparent !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  min-height: 0 !important;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* Nav: terminal path style – ~/path */
+body.site-theme-unified .navbar-custom .navbar-brand {
+  padding: 0.25rem 0.4rem !important;
+  font-size: 0.8rem !important;
+  color: var(--term-fg) !important;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* Brand shows as ~/pocaster with cursor */
+body.site-theme-unified .navbar-custom .navbar-brand::before {
+  content: "~/";
+  color: var(--term-prompt);
+}
+
+body.site-theme-unified .navbar-custom .navbar-brand::after {
+  content: "_";
+  color: var(--term-fg);
+  margin-left: 0.1rem;
+  animation: cursor-blink 1.2s step-end infinite;
+}
+
+body.site-theme-unified .navbar-custom .navbar-brand:hover {
+  color: var(--term-link-hover) !important;
+  text-decoration: underline !important;
+}
+
+/* Cursor blink animation */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Nav links: path style – ~/about, ~/resources, etc. */
+body.site-theme-unified .navbar-custom .nav-item {
+  margin-left: 0.5rem;
+}
+
+body.site-theme-unified .navbar-custom .nav-link {
+  padding: 0.25rem 0.4rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  color: var(--term-fg) !important;
+  text-transform: lowercase;
+  background: none !important;
+  border: none !important;
+  border-radius: 0;
+  transition: color 0.15s ease;
+}
+
+/* Add ~/ prefix before each nav link */
+body.site-theme-unified .navbar-custom .nav-link::before {
+  content: "~/";
+  color: var(--term-prompt);
+}
+
+body.site-theme-unified .navbar-custom .nav-link:hover,
+body.site-theme-unified .navbar-custom .nav-link:focus,
+body.site-theme-unified .navbar-custom.navbar-light .nav-link:hover {
+  color: var(--term-link-hover) !important;
+  text-decoration: underline !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Active page: show cursor after path */
+body.site-theme-unified .navbar-custom .nav-link.active::after,
+body.site-theme-unified .navbar-custom .nav-item.active .nav-link::after {
+  content: "_";
+  color: var(--term-fg);
+  margin-left: 0.1rem;
+  animation: cursor-blink 1.2s step-end infinite;
+}
+
+/* Remove separators – paths don't need them */
+body.site-theme-unified .navbar-custom .navbar-nav .nav-item:not(:last-child) .nav-link::after {
+  display: none !important;
+}
+
+body.site-theme-unified .navbar-custom .navbar-nav {
+  align-items: center;
+}
+
+body.site-theme-unified .navbar-custom .navbar-toggler {
+  padding: 0.3rem 0.5rem !important;
+  border: 1px solid var(--term-border) !important;
+  border-radius: 3px !important;
+  color: var(--term-dim) !important;
+  font-size: 0.75rem !important;
+}
+
+body.site-theme-unified .navbar-custom .navbar-toggler:hover {
+  border-color: var(--term-prompt) !important;
+  color: var(--term-fg) !important;
+}
+
+body.site-theme-unified .navbar-custom .navbar-toggler-icon {
+  width: 1rem;
+  height: 1rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 30 30'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Dropdown: terminal-style popup */
+body.site-theme-unified .navbar-custom .dropdown-menu {
+  background-color: rgba(13, 17, 23, 0.98) !important;
+  border: 1px solid var(--term-border) !important;
+  border-radius: 4px !important;
+  font-size: 0.8rem !important;
+  padding: 0.25rem !important;
+  font-family: var(--font-mono);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.site-theme-unified .navbar-custom .dropdown-item {
+  padding: 0.35rem 0.6rem !important;
+  color: var(--term-fg) !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+body.site-theme-unified .navbar-custom .dropdown-item:hover {
+  color: var(--term-link-hover) !important;
+  background-color: transparent !important;
+}
+
+/* Dropdown items: show as indented paths */
+body.site-theme-unified .navbar-custom .dropdown-item::before {
+  content: "  ~/";
+  color: var(--term-dim);
+}
+
+/* Search link in nav – ~/search */
+body.site-theme-unified .navbar-custom #nav-search-link::before {
+  content: "~/";
+  color: var(--term-prompt);
+}
+
+body.site-theme-unified .navbar-custom #nav-search-link {
+  padding: 0.25rem 0.4rem !important;
+  font-size: 0.8rem !important;
+}
+
+body.site-theme-unified .navbar-custom #nav-search-text {
+  display: none;
+}
+
+/* Mobile: vertical path layout */
+@media (max-width: 1199.98px) {
+  body.site-theme-unified .navbar-custom .navbar-collapse {
+    background: rgba(13, 17, 23, 0.95);
+    border: 1px solid var(--term-border);
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  body.site-theme-unified .navbar-custom .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  body.site-theme-unified .navbar-custom .nav-item {
+    margin-left: 0;
+    margin-bottom: 0.25rem;
+    width: 100%;
+  }
+
+  body.site-theme-unified .navbar-custom .nav-link {
+    display: block;
+    padding: 0.35rem 0.5rem !important;
+  }
+
+  body.site-theme-unified .navbar-custom .dropdown-menu {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-left: 1rem;
+  }
+
+  body.site-theme-unified .navbar-custom .dropdown-item {
+    padding: 0.25rem 0.5rem !important;
+  }
+}
+
+/* Terminal-style content area: left accent (prompt line) */
+body.site-theme-unified main .container-md .row > [class*="col-"]:first-child,
+body.site-theme-unified main .container-fluid .row > [class*="col-"]:first-child {
+  border-left: 3px solid var(--term-prompt);
+  padding-left: 1rem;
+  margin-left: -1px;
+}
+
+@media (max-width: 991.98px) {
+  body.site-theme-unified main .container-md .row > [class*="col-"]:first-child,
+  body.site-theme-unified main .container-fluid .row > [class*="col-"]:first-child {
+    border-left-width: 2px;
+    padding-left: 0.75rem;
+  }
+}
+
+/* Post header (title area) – terminal output style */
+body.site-theme-unified .intro-header .post-heading h1,
+body.site-theme-unified .intro-header .post-heading .post-subheading,
+body.site-theme-unified .intro-header .post-heading .post-meta {
+  color: var(--term-fg);
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified .intro-header .post-heading .post-meta {
+  color: var(--term-dim);
+}
+
+body.site-theme-unified .intro-header .post-heading hr {
+  border-color: var(--term-border);
+}
+
+/* Hide duplicate title: header already shows page title, so hide first h1 in post body */
+body.site-theme-unified .blog-post > h1:first-child {
+  display: none;
+}
+
+/* Main content – terminal output style */
+body.site-theme-unified main,
+body.site-theme-unified .blog-post,
+body.site-theme-unified .blog-post p {
+  color: var(--term-fg);
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified main h1,
+body.site-theme-unified main h2,
+body.site-theme-unified main h3,
+body.site-theme-unified main h4,
+body.site-theme-unified main h5,
+body.site-theme-unified main h6,
+body.site-theme-unified .blog-post h1,
+body.site-theme-unified .blog-post h2,
+body.site-theme-unified .blog-post h3,
+body.site-theme-unified .blog-post h4,
+body.site-theme-unified .blog-post h5,
+body.site-theme-unified .blog-post h6 {
+  color: var(--term-fg);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+body.site-theme-unified .blog-post a {
+  color: var(--term-link);
+}
+
+body.site-theme-unified .blog-post a:hover {
+  color: var(--term-link-hover);
+  text-decoration: underline;
+}
+
+body.site-theme-unified .blog-post blockquote {
+  border-left: 3px solid var(--term-prompt);
+  color: var(--term-dim);
+}
+
+body.site-theme-unified .blog-post blockquote p {
+  color: var(--term-dim);
+}
+
+body.site-theme-unified .blog-post hr {
+  border-color: var(--term-border);
+}
+
+body.site-theme-unified .blog-post code {
+  background-color: rgba(51, 65, 85, 0.5);
+  color: var(--term-fg);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified .blog-post pre {
+  background-color: rgba(13, 17, 23, 0.9);
+  border: 1px solid var(--term-border);
+  border-radius: 6px;
+}
+
+body.site-theme-unified .blog-post pre code {
+  background: none;
+  color: var(--term-fg);
+  padding: 0;
+}
+
+/* Syntax-highlighted code blocks (Rouge/Pygment) */
+body.site-theme-unified .blog-post .highlight,
+body.site-theme-unified .blog-post .highlight pre {
+  background-color: rgba(13, 17, 23, 0.95);
+  border: 1px solid var(--term-border);
+  border-radius: 6px;
+  color: var(--term-fg);
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified .blog-post .caption {
+  color: var(--term-dim);
+}
+
+/* Tags */
+body.site-theme-unified .blog-tags {
+  color: var(--term-dim);
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified .blog-tags a {
+  color: var(--term-link);
+}
+
+body.site-theme-unified .blog-tags a:hover {
+  text-decoration: underline;
+}
+
+/* Pagination (prev/next) – terminal button style */
+body.site-theme-unified .blog-pager .page-link {
+  background-color: rgba(51, 65, 85, 0.5);
+  border-color: var(--term-border);
+  color: var(--term-link);
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified .blog-pager .page-link:hover {
+  background-color: rgba(51, 65, 85, 0.8);
+  border-color: var(--term-prompt);
+  color: var(--term-link-hover);
+  text-decoration: underline;
+}
+
+/* Footer: flat one-liner – no bar, minimal line at bottom */
+body.site-theme-unified footer {
+  background: transparent !important;
+  border: none !important;
+  padding: 0.5rem 1rem 0.75rem !important;
+  margin-top: 2rem !important;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+body.site-theme-unified footer .beautiful-jekyll-footer .row {
+  margin: 0;
+}
+
+body.site-theme-unified footer .beautiful-jekyll-footer .col-xl-8 {
+  max-width: none;
+  flex: 0 0 100%;
+  padding: 0;
+}
+
+body.site-theme-unified footer .footer-links {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
+body.site-theme-unified footer .footer-links .list-inline-item {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+body.site-theme-unified footer .footer-links .fa-stack {
+  font-size: 0.65rem;
+}
+
+body.site-theme-unified footer .footer-links .fa-stack-2x {
+  font-size: 1em;
+}
+
+body.site-theme-unified footer p.copyright {
+  margin: 0 0 0.25rem 0 !important;
+  font-size: 0.75rem !important;
+}
+
+body.site-theme-unified footer p.text-muted,
+body.site-theme-unified footer .text-muted {
+  color: var(--term-dim) !important;
+}
+
+body.site-theme-unified footer .theme-by {
+  display: none !important;
+}
+
+body.site-theme-unified footer a {
+  color: var(--term-link);
+}
+
+body.site-theme-unified footer a:hover {
+  color: var(--term-link-hover);
+  text-decoration: underline;
+}
+
+body.site-theme-unified footer .footer-links a {
+  color: var(--term-fg);
+}
+
+body.site-theme-unified footer .fa-inverse {
+  color: #0d1117;
+}
+
+/* GitHub buttons if present */
+body.site-theme-unified #header-gh-btns iframe {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Tables in posts */
+body.site-theme-unified .blog-post table th,
+body.site-theme-unified .blog-post table td {
+  border-color: var(--term-border);
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified .blog-post table th {
+  background-color: rgba(51, 65, 85, 0.4);
+  color: var(--term-fg);
+}
+
+body.site-theme-unified .blog-post table tr:nth-child(even) {
+  background-color: rgba(51, 65, 85, 0.2);
+}
+
+/* Page content (aboutme, tags, etc.) – same terminal typography */
+body.site-theme-unified main .row p,
+body.site-theme-unified main .row li,
+body.site-theme-unified main .row ul,
+body.site-theme-unified main .row ol {
+  color: var(--term-fg);
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified main .btn,
+body.site-theme-unified main .tag-btn {
+  font-family: var(--font-mono);
+  background-color: rgba(51, 65, 85, 0.6) !important;
+  border-color: var(--term-border) !important;
+  color: var(--term-link) !important;
+}
+
+body.site-theme-unified main .btn:hover,
+body.site-theme-unified main .tag-btn:hover {
+  background-color: rgba(51, 65, 85, 0.9) !important;
+  border-color: var(--term-prompt) !important;
+  color: var(--term-link-hover) !important;
+  text-decoration: underline;
+}
+
+body.site-theme-unified #full-tags-list .linked-section,
+body.site-theme-unified #full-tags-list .tag-entry a {
+  color: var(--term-fg);
+  font-family: var(--font-mono);
+}
+
+body.site-theme-unified #full-tags-list .entry-date {
+  color: var(--term-dim);
+}

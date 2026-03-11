@@ -27,7 +27,7 @@ body.terminal-home {
   position: relative;
 }
 
-/* Full-bleed background. Replace with your 1:1 Midwest emo image: url('/assets/img/home-bg.jpg') */
+/* Homepage background: centered image, smaller so it doesn't take full height */
 .term-bg {
   position: fixed;
   top: 0;
@@ -36,12 +36,13 @@ body.terminal-home {
   bottom: 0;
   z-index: 0;
   background-color: #1a1520;
-  background-image: linear-gradient(160deg, #1a1520 0%, #2d1f3d 25%, #1e2a4a 55%, #0f1729 100%);
-  background-size: cover;
-  background-position: center;
+  background-image: url('/assets/img/0025160427_0.jpg');
+  background-repeat: no-repeat;
+  background-position: center calc(50% - 10px);
+  background-size: auto 70vh;
 }
 
-/* Dark overlay + strong vignette (corners much darker) */
+/* Full-page panel: same dark semi-transparent backdrop as before, applied to entire page */
 .term-overlay {
   position: fixed;
   top: 0;
@@ -50,9 +51,7 @@ body.terminal-home {
   bottom: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 75% 70% at 50% 45%, transparent 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.75) 100%),
-    linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.65) 100%);
+  background: rgba(13, 17, 23, 0.82);
 }
 
 /* Film grain */
@@ -79,12 +78,22 @@ body.terminal-home {
   text-decoration: underline;
 }
 
+/* Content area: block centered on page, text left-aligned */
 .terminal-container {
   position: relative;
   z-index: 3;
   max-width: 680px;
   margin: 0 auto;
   padding: 3rem 1.5rem 4rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.terminal-container .term-prompt-block,
+.terminal-container .term-output,
+.terminal-container .term-track-label,
+.terminal-container .term-filter {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Prompt block */

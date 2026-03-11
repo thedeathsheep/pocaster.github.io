@@ -163,6 +163,7 @@ footer-hover-col: "#0085A1"
 site-css:
   - "/assets/css/custom-styles.css"
   - "/assets/css/sticky-posts.css"
+  - "/assets/css/unified-theme.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
 site-js:
@@ -307,7 +308,7 @@ plugins:
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
 
-port: 4010
+port: 4000
 
 # Mermaid support
 mermaid:
