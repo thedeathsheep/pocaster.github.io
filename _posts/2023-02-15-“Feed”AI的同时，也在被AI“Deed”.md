@@ -1,12 +1,12 @@
-﻿---
+---
 layout: post
 title: “Feed”AI的同时，也在被AI“Feed”
 cover-img: /assets/img/cover02.jpg
 share-img: /assets/img/cover02.jpg
 tags: [AI, Agent, Philosophy]
 author: pocaster
+excerpt: “Feed”AI的同时，也在被AI“Feed”
 ---
-
 最近，我发现自己说话的方式变了。 
 
 有时候，和朋友聊天时，我会下意识地用更精确、更结构化的句子，好像对方是个 AI，需要让我“prompt”得足够清晰，才能理解我的意思。甚至在表达情绪时，也变得更符号化、模式化。

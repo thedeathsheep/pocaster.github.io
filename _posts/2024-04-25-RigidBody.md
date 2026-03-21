@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: 2D物理(11)Rigid Body
 cover-img: /assets/img/0028963732_0.jpg
@@ -6,9 +6,9 @@ thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
 tags: [Game Dev]
 author: pocaster
+excerpt: 2D物理(11)Rigid Body
 mathjax: true
 ---
-
 ## **刚体物理（Rigid Body Dynamics）详解**
 
 ---

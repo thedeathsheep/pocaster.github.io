@@ -1,14 +1,14 @@
-﻿---
+---
 layout: post
 title: 2D物理(21) AT Separeting Axis Theorem
 cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Game Dev, AI]
+tags: [Game Dev]
 author: pocaster
+excerpt: 2D物理(21) AT Separeting Axis Theorem
 mathjax: true
 ---
-
 ## **分离轴定理 (Separating Axis Theorem - SAT)**
 **硬核碰撞检测的数学基础**
 

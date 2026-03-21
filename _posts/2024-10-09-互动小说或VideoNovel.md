@@ -1,16 +1,16 @@
-﻿---
+---
 layout: post
 title:  视觉小说或互动小说的设计思路
 cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Game Dev]
+tags: [Game Dev, VideoNovel, Writing]
 author: pocaster
+excerpt: 视觉小说或互动小说的设计思路
 mathjax: true
-mermaid: true 
+mermaid: true
 published: true
 ---
-
 ### **一、核心设计立方体**
 
 <div class="mermaid">

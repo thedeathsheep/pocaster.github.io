@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: 2D物理效果代码实现思路(4)DeltaTime
 cover-img: /assets/img/0028963732_0.jpg
@@ -6,9 +6,9 @@ thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
 tags: [Game Dev]
 author: pocaster
+excerpt: 2D物理效果代码实现思路(4)DeltaTime
 mathjax: true
 ---
-
 以下是对 `DeltaTime` 的详细解释及其在游戏开发中的实际应用。
 
 ---

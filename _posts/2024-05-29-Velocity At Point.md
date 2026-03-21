@@ -1,13 +1,14 @@
-﻿---
+---
 layout: post
 title: 2D物理(22) Velocity At Point
+cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Game Dev, AI]
+tags: [Game Dev]
 author: pocaster
+excerpt: 2D物理(22) Velocity At Point
 mathjax: true
 ---
-
 ## **刚体点速度与碰撞后速度计算解析**
 
 ---

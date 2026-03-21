@@ -1,11 +1,12 @@
-﻿---
+---
 layout: post
 title: 2D物理(14) Torque & Moment of Inertia
 cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Game Dev, AI]
+tags: [Game Dev]
 author: pocaster
+excerpt: 2D物理(14) Torque & Moment of Inertia
 mathjax: true
 ---
 ## **扭矩与转动惯量系统详解**

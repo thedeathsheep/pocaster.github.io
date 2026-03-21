@@ -1,13 +1,13 @@
-﻿---
+---
 layout: post
 title: The Rise of Indies, the Cosmopolitanism in Games' Arts
 cover-img: /assets/img/0026716027_0.jpg
 thumbnail-img: /assets/img/0026716027_0.jpg
 share-img: /assets/img/0026716027_0.jpg
-tags: [Game Dev, Source]
+tags: [Source, Game Dev]
 author: GraceWay
+excerpt: The Rise of Indies, the Cosmopolitanism in Games' Arts
 ---
-
 Nowadays, the concept of cosmopolitanism has raised great concerns from media scholars.
 
 According to Nikos Papastergiadis, this concept is the product of an idea of the world and an ideal form of global citizenship (2012). This paper will examine how this trend of cosmopolitanism is reflected in games industry, especially independent-designed games by analysing three new tendencies; first, game designers' changes of self-identification; second, the changing methods and characters of designers' interactions; third, game designers' emerging intentions on bringing social issues to global.

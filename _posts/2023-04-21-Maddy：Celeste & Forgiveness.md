@@ -1,14 +1,13 @@
-﻿---
+---
 layout: post
 title: Maddy：Celeste & Forgiveness
 cover-img: /assets/img/celeste.png
 thumbnail-img: /assets/img/celeste.png
 share-img: /assets/img/celeste.png
-tags: [Game, Cite]
+tags: [Source, Game Dev]
 author: Maddy
+excerpt: Maddy：Celeste & Forgiveness
 ---
-
-
 Celeste & Forgiveness
 
 This was originally a short Twitter thread about some Celeste game-feel tricks. I don't think that we invented any of these techniques, but they are important parts of the moment-to-moment experience of Celeste.

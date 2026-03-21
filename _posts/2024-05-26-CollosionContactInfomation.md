@@ -1,14 +1,14 @@
-﻿---
+---
 layout: post
 title: 2D物理(17) Collosion Contact Infomation
 cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Game Dev, AI]
+tags: [Game Dev]
 author: pocaster
+excerpt: 2D物理(17) Collosion Contact Infomation
 mathjax: true
 ---
-
 ## **Collision Contact Information 构建与处理**
 
 ---

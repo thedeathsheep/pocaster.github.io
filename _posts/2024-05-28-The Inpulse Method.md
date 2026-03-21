@@ -1,14 +1,14 @@
-﻿---
+---
 layout: post
 title: 2D物理(20) The Impluse Method
 cover-img: /assets/img/0028963732_0.jpg
 thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
-tags: [Game Dev, AI]
+tags: [Game Dev]
 author: pocaster
+excerpt: 2D物理(20) The Impluse Method
 mathjax: true
 ---
-
 ## **Impulse Method 核心推导与冲量计算**
 
 ---

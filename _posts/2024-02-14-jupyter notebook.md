@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: 什么是Jupyter Notebook？
 cover-img: /assets/img/0028963732_0.jpg
@@ -6,9 +6,9 @@ thumbnail-img: /assets/img/0028963732_0.jpg
 share-img: /assets/img/0028963732_0.jpg
 tags: [AI]
 author: pocaster
+excerpt: 什么是Jupyter Notebook？
 published: false
 ---
-
 Jupyter Notebook 是一个开源的交互式 Web 应用程序，允许用户创建和共享包含实时代码、可视化图表、数学公式、文本说明等内容的文档。它最初是 IPython 项目的一部分，后来发展为支持多种编程语言（如 Python、R、Julia 等），因此得名 "Jupyter"（Julia + Python + R 的组合）。
 
 ### 主要特点：
