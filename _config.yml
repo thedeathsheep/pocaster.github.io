@@ -13,7 +13,7 @@
 title: POCASTER'S BLOG
 
 # Website URL (used for generating absolute URLs)
-url: "https://www.inevitable-event.com"
+url: "https://farawayfrom.icu"
 
 # Your name to show in the footer
 author: POCASTER / Inevitable-Event Studio
@@ -23,7 +23,9 @@ author: POCASTER / Inevitable-Event Studio
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
+  Blog: "/"
+  About: "about"
+  Games: "games"
   Resources:
     - INDIE NOVA: "https://indienova.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
@@ -299,6 +301,8 @@ exclude:
   - LICENSE
   - README.md
   - screenshot.png
+  - site.zip
+  - scripts/
   - docs/
 
 plugins:
@@ -315,4 +319,3 @@ mermaid:
   enable: true
   version: "11.6.0"
   theme: "default"
-
