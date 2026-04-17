@@ -1,0 +1,10 @@
+- title: "No public game page yet"
+  slug: "coming-soon"
+  status: "planning"
+  summary: "This slot is reserved for the first public web game or prototype that gets its own page on the site."
+  platform: "Web"
+  stack:
+    - "HTML5"
+    - "JavaScript"
+  url: ""
+  cta_label: ""

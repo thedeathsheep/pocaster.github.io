@@ -1,0 +1,10 @@
+- title: "farawayfrom.icu"
+  kind: "personal-site"
+  status: "active"
+  summary: "The main site itself: blog, project hub, and deployment base for future game pages."
+  stack:
+    - "Jekyll"
+    - "GitHub Actions"
+    - "IIS"
+  url: "/"
+  cta_label: "Open site"
