@@ -24,12 +24,10 @@ author: POCASTER / Inevitable-Event Studio
 
 navbar-links:
   Blog: "/"
-  About: "about"
   Games: "games"
-  Resources:
-    - INDIE NOVA: "https://indienova.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Leave this page: "https://www.google.com"
+  Projects: "projects"
+  About: "about"
+  Contact: "contact"
 
 ################
 # --- Logo --- #

@@ -6,7 +6,7 @@ layout: null
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{{ site.title }} — $ whoami</title>
+  <title>{{ site.title }} - $ whoami</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/terminal-home.css' | relative_url }}">
 </head>
@@ -15,26 +15,89 @@ layout: null
   <div class="term-overlay" role="presentation"></div>
   <div class="term-grain" role="presentation"></div>
 
-  <div class="terminal-container">
+  {% assign featured_posts = site.posts | sort: "date" | reverse | slice: 0, 6 %}
+
+  <main class="terminal-container">
     <div class="term-prompt-block">
       <span class="prompt">$</span>
       <span class="cmd">whoami</span>
     </div>
+    <header class="term-output">
+      <h1 class="term-fg">{{ site.title }}</h1>
+      <span class="term-subtitle"> - {{ page.subtitle | default: "Writing, games, experiments, and the systems behind them." }}</span>
+    </header>
+    <p class="term-lead">
+      {{ page.hero_intro | default: "A personal site for essays, game work, and long-lived experiments. Start with the area you want, then drill into the posts, projects, and builds underneath." }}
+    </p>
+
+    <section class="term-entry-grid" aria-label="Main site areas">
+      <a class="term-entry-card" href="{{ '/' | relative_url }}">
+        <span class="entry-kicker">$ open blog/</span>
+        <strong>Blog</strong>
+        <span>Essays, notes, and writing from current work.</span>
+      </a>
+      <a class="term-entry-card" href="{{ '/games/' | relative_url }}">
+        <span class="entry-kicker">$ open games/</span>
+        <strong>Games</strong>
+        <span>Playable experiments, prototypes, and web-first game work.</span>
+      </a>
+      <a class="term-entry-card" href="{{ '/projects/' | relative_url }}">
+        <span class="entry-kicker">$ open projects/</span>
+        <strong>Projects</strong>
+        <span>Tools, technical experiments, and everything that is not a game.</span>
+      </a>
+    </section>
+
+    <div class="term-prompt-block">
+      <span class="prompt">$</span>
+      <span class="cmd">ls featured-writing/</span>
+    </div>
+    <p class="term-track-label">- latest dispatches -</p>
     <div class="term-output">
-      <span class="term-fg">{{ site.title }}</span>
-      <span class="term-subtitle"> — {{ page.subtitle | default: '分享我对生活、技术、世界的理解' }}</span>
+      {% for post in featured_posts %}
+        {% include terminal_line.html post=post %}
+      {% endfor %}
     </div>
 
     <div class="term-prompt-block">
       <span class="prompt">$</span>
-      <span class="cmd">ls posts/</span>
+      <span class="cmd">ls featured-work/</span>
     </div>
-    <p class="term-track-label">— track list —</p>
-    <div class="term-output">
-      {% assign sorted_posts = site.posts | sort: "date" | reverse %}
-      {% for post in sorted_posts %}
-        {% include terminal_line.html post=post %}
+    <p class="term-track-label">- entry points -</p>
+    <section class="term-work-grid" aria-label="Featured work">
+      {% for item in page.featured_work %}
+      <a class="term-work-card" href="{{ item.href | relative_url }}">
+        <span class="work-label">{{ item.meta }}</span>
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.summary }}</p>
+      </a>
       {% endfor %}
+    </section>
+
+    <div class="term-split">
+      <section class="term-panel" aria-labelledby="about-teaser-title">
+        <div class="term-prompt-block">
+          <span class="prompt">$</span>
+          <span class="cmd">cat about.txt</span>
+        </div>
+        <h2 id="about-teaser-title">About</h2>
+        <p>
+          {{ page.about_teaser | default: "POCASTER builds in public through essays, game design thinking, and small experiments that stay readable after the first burst of excitement." }}
+        </p>
+        <a class="term-inline-link" href="{{ '/about/' | relative_url }}">Read the full about page</a>
+      </section>
+
+      <section class="term-panel" aria-labelledby="contact-teaser-title">
+        <div class="term-prompt-block">
+          <span class="prompt">$</span>
+          <span class="cmd">cat contact.txt</span>
+        </div>
+        <h2 id="contact-teaser-title">Contact</h2>
+        <p>
+          {{ page.contact_teaser | default: "Reach out for project discussion, writing feedback, game-dev conversation, or interesting experiments worth comparing notes on." }}
+        </p>
+        <a class="term-inline-link" href="{{ '/contact/' | relative_url }}">Go to contact</a>
+      </section>
     </div>
 
     <div class="term-prompt-block">
@@ -42,8 +105,8 @@ layout: null
       <span class="term-cursor"></span>
     </div>
 
-    <p class="term-filter">点击任意一行 <span class="filename">cat</span> 该文章 · 完整列表 <a href="{{ '/tags.html' | relative_url }}">tags</a></p>
-  </div>
+    <p class="term-filter">Open a line to read a post, browse <a href="{{ '/tags/' | relative_url }}">tags</a>, or jump into the site sections above.</p>
+  </main>
 
 </body>
 </html>

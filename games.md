@@ -4,4 +4,18 @@ title: Games
 permalink: /games/
 ---
 
-这里将作为 Web 游戏索引页，后续统一收录部署在 `/games/<slug>/` 下的项目。
+## What you'll find here
+
+This page is the index for my game work. I use it to collect playable builds, prototypes, and notes about what each game is trying to do.
+
+## Current status
+
+- Some entries may be polished and playable.
+- Others may be early prototypes, experiments, or works in progress.
+- When a game is still being shaped, I'll keep the current state and next step visible.
+
+## How I organize games
+
+- Web-first projects live here by default.
+- Individual games can have their own subpages under `/games/<slug>/`.
+- I'll separate finished releases from experiments when that becomes useful.
