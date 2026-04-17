@@ -1,66 +1,103 @@
 # POCASTER'S BLOG
 
-这是我的个人博客网站，基于 Beautiful Jekyll 构建，用于分享想法、经验和创作。
+Personal site and blog for `farawayfrom.icu`, built with Jekyll and deployed to a Windows Server + IIS environment.
 
-## 网站特点
+## What lives here
 
-- 简洁响应式博客布局
-- 文章搜索与标签分类
-- RSS 订阅支持
-- 可扩展的自定义样式与脚本
+- Blog posts and essays
+- A personal homepage and about page
+- Data-driven indexes for games and projects
+- Deployment automation for the live server
 
-## 技术栈
+## Tech stack
 
 - Jekyll
 - Beautiful Jekyll
+- GitHub Actions
 - Windows Server + IIS
 
-## 本地开发
+## Local development
 
-1. 安装 Ruby 和 Bundler
-2. 克隆仓库
+1. Install Ruby and Bundler.
+2. Clone the repository.
 
 ```bash
-git clone https://github.com/pocaster/pocaster.github.io.git
+git clone https://github.com/thedeathsheep/pocaster.github.io.git
 cd pocaster.github.io
 ```
 
-3. 安装依赖
+3. Install dependencies.
 
 ```bash
 bundle install
 ```
 
-4. 本地运行
+4. Start the local server.
 
 ```bash
 bundle exec jekyll serve
 ```
 
-5. 访问 `http://localhost:4000`
+5. Open [http://localhost:4000](http://localhost:4000).
 
-## 项目结构
+## Content structure
 
-- `_posts/`、`_drafts/`：文章与草稿
-- `_layouts/`、`_includes/`、`_data/`：站点模板与数据
-- `assets/`：样式、脚本、图片等静态资源
-- `scripts/`：内容与构建相关脚本
-- `_config.yml`：站点主配置
+- `_posts/`: blog posts
+- `_layouts/`, `_includes/`, `_data/`: templates, partials, and structured site data
+- `assets/`: styles, scripts, and images
+- `scripts/`: deployment or build-related helper scripts
+- `_config.yml`: site configuration
 
-## 联系方式
+## Updating games and projects
 
-- Email: helloandone@gmail.com
-- GitHub: [@thedeathsheep](https://github.com/thedeathsheep)
+The site now uses data files for the main indexes:
 
-## 部署
+- `_data/games.yml`
+- `_data/projects.yml`
 
-生产环境部署由 `.github/workflows/deploy-farawayfromicu.yml` 负责。
+To add a new item, append a new YAML object with the right fields.
 
-- 目标目录：`C:\inetpub\wwwroot\farawayfromicu`
-- 备份目录：`C:\inetpub\wwwroot\_deploy_backups\farawayfromicu-<timestamp>`
-- 必需 GitHub Secrets：`FARAWAY_SSH_HOST`、`FARAWAY_SSH_USER`、`FARAWAY_SSH_KEY`
-- 服务器前提：已启用 OpenSSH、IIS 指向目标目录、部署账号有备份与覆盖站点文件权限
+### Game fields
+
+- `title`
+- `slug`
+- `status`
+- `summary`
+- `platform`
+- `stack`
+- `url`
+- `cta_label`
+
+### Project fields
+
+- `title`
+- `kind`
+- `status`
+- `summary`
+- `stack`
+- `url`
+- `cta_label`
+
+These data files feed both the dedicated index pages and the featured work section on the homepage.
+
+## Contact
+
+- Email: [helloandone@gmail.com](mailto:helloandone@gmail.com)
+- GitHub: [thedeathsheep](https://github.com/thedeathsheep)
+
+## Deployment
+
+Production deployment is handled by `.github/workflows/deploy-farawayfromicu.yml`.
+
+- Target directory: `C:\inetpub\wwwroot\farawayfromicu`
+- Backup directory: `C:\inetpub\wwwroot\_deploy_backups\farawayfromicu-<timestamp>`
+- Required GitHub Secrets:
+  - `FARAWAY_SSH_HOST`
+  - `FARAWAY_SSH_USER`
+  - `FARAWAY_SSH_KEY`
+
+The server should have OpenSSH enabled, IIS pointed at the target directory, and the deployment account should have permission to back up and replace site files.
 
 ## License
 
-MIT. 详见 [LICENSE](LICENSE)。
+MIT. See [LICENSE](LICENSE).
