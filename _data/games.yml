@@ -1,7 +1,7 @@
-- title: "No public game page yet"
+- title: "还没有公开游戏页"
   slug: "coming-soon"
   status: "planning"
-  summary: "This slot is reserved for the first public web game or prototype that gets its own page on the site."
+  summary: "这里预留给第一个正式挂到站上的 Web 游戏或可玩原型。"
   platform: "Web"
   stack:
     - "HTML5"

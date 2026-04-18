@@ -6,7 +6,8 @@ layout: null
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{{ site.title }} - {{ page.hero_title | default: 'Creator home' }}</title>
+  <title>{{ site.title }} - {{ page.hero_title | default: '个人站' }}</title>
+  <link rel="icon" href="{{ '/assets/img/avatar-icon.png' | relative_url }}">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/terminal-home.css' | relative_url }}">
 </head>
@@ -19,13 +20,13 @@ layout: null
   {% assign featured_game = site.data.games | first %}
   {% assign featured_project = site.data.projects | first %}
 
-  <header class="creator-topbar" aria-label="Site">
+  <header class="creator-topbar" aria-label="站点导航">
     <a class="creator-brand" href="{{ '/' | relative_url }}">
       <span class="brand-mark">~/</span>{{ site.title }}
     </a>
-    <nav class="creator-nav" aria-label="Primary">
+    <nav class="creator-nav" aria-label="主导航">
       {% for link in site.navbar-links %}
-      <a href="{{ link[1] | relative_url }}"><span>~/</span>{{ link[0] | downcase }}</a>
+      <a href="{{ link[1] | relative_url }}"><span>~/</span>{{ link[0] }}</a>
       {% endfor %}
     </nav>
   </header>
@@ -34,98 +35,109 @@ layout: null
     <section class="creator-hero">
       <div class="hero-copy">
         <p class="hero-eyebrow">{{ page.hero_eyebrow | default: site.author }}</p>
-        <h1>{{ page.hero_title | default: "A creator home for notes, games, and side projects." }}</h1>
-        <p class="hero-intro">{{ page.hero_intro | default: "I write to think, build to test ideas, and keep a public trail of the experiments worth revisiting." }}</p>
-        <p class="hero-note">{{ page.hero_note | default: "Start with the lane you want, then move into current work, selected writing, and the projects that are still alive." }}</p>
-      </div>
-      <div class="hero-aside">
-        <p class="aside-label">Current focus</p>
-        <ul>
-          <li>Building a personal site that can host both writing and playable work</li>
-          <li>Keeping game experiments and project notes close to the blog instead of splitting them apart</li>
-          <li>Turning rough ideas into public, maintainable pages</li>
-        </ul>
+        <h1>{{ page.hero_title | default: "你好，这里是我写作、做游戏和放作品的地方。" }}</h1>
+        <p class="hero-intro">{{ page.hero_intro | default: "我把文章、实验和项目放在同一个网站里，希望它更像一个长期更新的个人空间，而不是一份整理完就不再变化的档案。" }}</p>
+        <p class="hero-note">{{ page.hero_note | default: "如果你第一次来，可以先看看文章；如果你更关心作品，也可以直接去游戏和项目页。" }}</p>
+        <p class="hero-signoff">{{ page.hero_signoff | default: "最近写得最多的是游戏、工具和那些一开始很小、后来慢慢长出来的项目。" }}</p>
       </div>
     </section>
 
-    <section class="lane-grid" aria-label="Main site areas">
+    <section class="lane-grid" aria-label="站点主入口">
       <a class="lane-link" href="{{ '/' | relative_url }}">
-        <span class="lane-kicker">Writing</span>
-        <strong>Blog</strong>
-        <span>Essays, notes, and longer-form thinking.</span>
+        <span class="lane-kicker">写作</span>
+        <strong>博客</strong>
+        <span>文章、笔记和更长一些的思考。</span>
       </a>
       <a class="lane-link" href="{{ '/games/' | relative_url }}">
-        <span class="lane-kicker">Playable</span>
-        <strong>Games</strong>
-        <span>Web-first experiments, prototypes, and future playable pages.</span>
+        <span class="lane-kicker">可玩</span>
+        <strong>游戏</strong>
+        <span>偏 Web 的实验、原型，以及后续的可玩页面。</span>
       </a>
       <a class="lane-link" href="{{ '/projects/' | relative_url }}">
-        <span class="lane-kicker">Systems</span>
-        <strong>Projects</strong>
-        <span>Tools, technical experiments, and the site itself.</span>
+        <span class="lane-kicker">作品</span>
+        <strong>项目</strong>
+        <span>工具、技术实验，以及站点本身。</span>
       </a>
     </section>
 
     <section class="creator-section">
       <div class="section-heading">
-        <p class="section-kicker">Selected writing</p>
-        <h2>Recent posts</h2>
-        <p>{{ page.recent_writing_intro | default: "Three recent posts, chosen to make the tone of the site legible at a glance." }}</p>
+        <p class="section-kicker">最近写作</p>
+        <h2>选三篇先看</h2>
+        <p>{{ page.recent_writing_intro | default: "先放三篇最近写的东西，方便快速了解我最近在想什么。" }}</p>
       </div>
       <div class="term-output recent-posts">
-      {% for post in featured_posts %}
-        {% include terminal_line.html post=post %}
-      {% endfor %}
+        {% for post in featured_posts %}
+          {% include terminal_line.html post=post show_tags=false %}
+        {% endfor %}
       </div>
     </section>
 
     <section class="creator-section">
       <div class="section-heading">
-        <p class="section-kicker">Current work</p>
-        <h2>Featured entry points</h2>
-        <p>{{ page.work_intro | default: "Current work and stable entry points." }}</p>
+        <p class="section-kicker">作品与入口</p>
+        <h2>也可以从这里开始</h2>
+        <p>{{ page.work_intro | default: "这里放的是我最近最想让人看到的几块内容。" }}</p>
       </div>
-      <div class="work-grid" aria-label="Featured work">
-      {% if featured_game %}
-      <a class="work-item" href="{% if featured_game.url and featured_game.url != '' %}{{ featured_game.url | relative_url }}{% else %}{{ '/games/' | relative_url }}{% endif %}">
-        <p class="work-label">{{ featured_game.platform }} / {{ featured_game.status }}</p>
-        <h3>{{ featured_game.title }}</h3>
-        <p>{{ featured_game.summary }}</p>
-        <span class="work-action">Open games</span>
-      </a>
-      {% endif %}
+      <div class="work-grid" aria-label="精选入口">
+        {% if featured_game %}
+        <a class="work-item" href="{% if featured_game.url and featured_game.url != '' %}{{ featured_game.url | relative_url }}{% else %}{{ '/games/' | relative_url }}{% endif %}">
+          <p class="work-label">
+            {{ featured_game.platform }} /
+            {% case featured_game.status %}
+              {% when 'active' %}进行中
+              {% when 'planning' %}筹备中
+              {% when 'paused' %}暂停
+              {% when 'archived' %}归档
+              {% else %}{{ featured_game.status }}
+            {% endcase %}
+          </p>
+          <h3>{{ featured_game.title }}</h3>
+          <p>{{ featured_game.summary }}</p>
+          <span class="work-action">看看游戏</span>
+        </a>
+        {% endif %}
 
-      {% if featured_project %}
-      <a class="work-item" href="{% if featured_project.url and featured_project.url != '' %}{{ featured_project.url | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}">
-        <p class="work-label">{{ featured_project.kind | replace: "-", " " }} / {{ featured_project.status }}</p>
-        <h3>{{ featured_project.title }}</h3>
-        <p>{{ featured_project.summary }}</p>
-        <span class="work-action">Open projects</span>
-      </a>
-      {% endif %}
+        {% if featured_project %}
+        <a class="work-item" href="{% if featured_project.url and featured_project.url != '' %}{{ featured_project.url | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}">
+          <p class="work-label">
+            {{ featured_project.kind | replace: "-", " " }} /
+            {% case featured_project.status %}
+              {% when 'active' %}进行中
+              {% when 'planning' %}筹备中
+              {% when 'paused' %}暂停
+              {% when 'archived' %}归档
+              {% else %}{{ featured_project.status }}
+            {% endcase %}
+          </p>
+          <h3>{{ featured_project.title }}</h3>
+          <p>{{ featured_project.summary }}</p>
+          <span class="work-action">看看项目</span>
+        </a>
+        {% endif %}
 
-      <a class="work-item" href="{{ '/about/' | relative_url }}">
-        <p class="work-label">{{ page.about_card_meta | default: "Context / direction" }}</p>
-        <h3>{{ page.about_card_title | default: "About the Studio" }}</h3>
-        <p>{{ page.about_card_summary | default: "A short read on what I make, what I keep learning in public, and why this site exists in the first place." }}</p>
-        <span class="work-action">Read about</span>
-      </a>
+        <a class="work-item" href="{{ '/about/' | relative_url }}">
+          <p class="work-label">{{ page.about_card_meta | default: "关于我" }}</p>
+          <h3>{{ page.about_card_title | default: "我是谁" }}</h3>
+          <p>{{ page.about_card_summary | default: "如果你想知道这些文章和项目背后是怎样的人、怎样的做事方式，可以从这里开始。" }}</p>
+          <span class="work-action">了解我</span>
+        </a>
       </div>
     </section>
 
     <section class="creator-footer">
       <div>
-        <p class="section-kicker">About</p>
-        <p>{{ page.about_teaser | default: "A short read on how I use this site, what I value, and why I keep the work public." }}</p>
-      </section>
+        <p class="section-kicker">关于</p>
+        <p>{{ page.about_teaser | default: "这里能看到我是谁、我在做什么，以及这个网站为什么会长成现在这样。" }}</p>
+      </div>
       <div>
-        <p class="section-kicker">Contact</p>
-        <p>{{ page.contact_teaser | default: "If you want to talk about games, tools, writing, or a project that overlaps with any of those, say hello." }}</p>
+        <p class="section-kicker">联系</p>
+        <p>{{ page.contact_teaser | default: "如果你想聊聊游戏、写作、工具，或者只是想打个招呼，欢迎联系我。" }}</p>
       </div>
       <div class="footer-actions">
-        <a href="{{ '/about/' | relative_url }}">About</a>
-        <a href="{{ '/contact/' | relative_url }}">Contact</a>
-        <a href="{{ '/tags/' | relative_url }}">Tags</a>
+        <a href="{{ '/about/' | relative_url }}">关于</a>
+        <a href="{{ '/contact/' | relative_url }}">联系</a>
+        <a href="{{ '/tags/' | relative_url }}">标签</a>
       </div>
     </section>
   </main>

@@ -1,10 +1,10 @@
 - title: "farawayfrom.icu"
-  kind: "personal-site"
+  kind: "站点"
   status: "active"
-  summary: "The main site itself: blog, project hub, and deployment base for future game pages."
+  summary: "站点本身：博客、项目入口，以及后续游戏页面的承载底座。"
   stack:
     - "Jekyll"
     - "GitHub Actions"
     - "IIS"
   url: "/"
-  cta_label: "Open site"
+  cta_label: "进入站点"

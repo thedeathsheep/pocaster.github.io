@@ -1,47 +1,46 @@
 ---
 layout: page
-title: About
-subtitle: Writing in public, building in small loops, and keeping the useful work visible.
+title: 关于
+subtitle: 写作、实验与长期项目的公开入口。
 permalink: /about/
 ---
 
-## Who I am
+## 我是谁
+我是 POCASTER / Inevitable-Event Studio。
 
-I'm POCASTER / Inevitable-Event Studio.
+这里更像我的一个长期主页。它把我最在意的几件事放在一起：
 
-This site is where I keep together three threads that matter to me:
+- 用写作把想法讲清楚
+- 做游戏和互动实验
+- 把值得回头看的项目留下成公开记录
 
-- writing to clarify ideas
-- making games and interactive experiments
-- keeping a public record of projects worth revisiting
+我偏爱那种热度过去之后，仍然能看、能用、能回头再读的东西。只要一个内容过了一段时间之后还觉得有价值，它大概率就该留在这里。
 
-I like work that stays readable after the first burst of excitement. If something still feels useful after a little time has passed, it probably belongs here.
+## 我在做什么
 
-## What I focus on
+- 写关于工具、系统和构建过程里所学内容的文章与笔记
+- 做偏 Web 的小游戏、原型和互动实验
+- 把放在公开环境里会更容易被理解的 side project 整理出来
 
-- Essays and notes about tools, systems, and things I learn while building
-- Small web-first games, prototypes, and interactive experiments
-- Side projects that are easier to understand when they live in public instead of in private folders
+## 这个网站里有什么
 
-## How I use this site
+如果你想快速浏览，可以从这几个方向进去：
 
-The site is organized around a few clear entry points:
+- [博客](/)：文章、笔记和长一点的思考
+- [游戏](/games/)：可玩的内容、原型和实验
+- [项目](/projects/)：工具、小项目和非游戏类作品
+- [联系](/contact/)：最直接的联系入口
 
-- [Blog](/): writing, notes, and long-form thinking
-- [Games](/games/): playable work, prototypes, and experiments
-- [Projects](/projects/): tools, utilities, and non-game work
-- [Contact](/contact/): the easiest ways to reach me
+我希望这个站更像一个持续生长的个人空间，而不是一份静态作品集。有些内容已经比较完整，有些还在变化中，只要状态清楚，它们都可以自然地放在这里。
 
-I want the site to work more like a living workspace than a frozen portfolio. Some things here are polished. Some are still in motion. Both are welcome as long as the current state is clear.
+## 我在意什么
 
-## What I value
+- 清晰胜过噪音
+- 公开迭代胜过永远藏在草稿里
+- 小而完成的实验胜过迟迟不落地的大设想
+- 能让后续更新更轻松的系统胜过一次性的手工处理
 
-- Clear thinking over noise
-- Public iteration over hidden drafts forever
-- Small, finished experiments over big ideas that never get shipped
-- Systems that make future updates easier, not harder
-
-## Elsewhere
+## 其他地方
 
 - GitHub: [thedeathsheep](https://github.com/thedeathsheep)
 - Email: [helloandone@gmail.com](mailto:helloandone@gmail.com)

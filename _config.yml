@@ -23,11 +23,11 @@ author: POCASTER / Inevitable-Event Studio
 ###############################################
 
 navbar-links:
-  Blog: "/"
-  Games: "games"
-  Projects: "projects"
-  About: "about"
-  Contact: "contact"
+  博客: "/"
+  游戏: "games"
+  项目: "projects"
+  关于: "about"
+  联系: "contact"
 
 ################
 # --- Logo --- #
