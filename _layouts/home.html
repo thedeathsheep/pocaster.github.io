@@ -6,123 +6,128 @@ layout: null
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{{ site.title }} - $ whoami</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>{{ site.title }} - {{ page.hero_title | default: 'Creator home' }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/terminal-home.css' | relative_url }}">
 </head>
 <body class="terminal-home">
-  <div class="term-bg" role="presentation"></div>
-  <div class="term-overlay" role="presentation"></div>
+  <div class="term-aurora" role="presentation"></div>
+  <div class="term-grid-glow" role="presentation"></div>
   <div class="term-grain" role="presentation"></div>
 
-  {% assign featured_posts = site.posts | sort: "date" | reverse | slice: 0, 6 %}
+  {% assign featured_posts = site.posts | sort: "date" | reverse | slice: 0, 3 %}
   {% assign featured_game = site.data.games | first %}
   {% assign featured_project = site.data.projects | first %}
 
-  <main class="terminal-container">
-    <div class="term-prompt-block">
-      <span class="prompt">$</span>
-      <span class="cmd">whoami</span>
-    </div>
-    <header class="term-output">
-      <h1 class="term-fg">{{ site.title }}</h1>
-      <span class="term-subtitle"> - {{ page.subtitle | default: "Writing, games, experiments, and the systems behind them." }}</span>
-    </header>
-    <p class="term-lead">
-      {{ page.hero_intro | default: "A personal site for essays, game work, and long-lived experiments. Start with the area you want, then drill into the posts, projects, and builds underneath." }}
-    </p>
+  <header class="creator-topbar" aria-label="Site">
+    <a class="creator-brand" href="{{ '/' | relative_url }}">
+      <span class="brand-mark">~/</span>{{ site.title }}
+    </a>
+    <nav class="creator-nav" aria-label="Primary">
+      {% for link in site.navbar-links %}
+      <a href="{{ link[1] | relative_url }}"><span>~/</span>{{ link[0] | downcase }}</a>
+      {% endfor %}
+    </nav>
+  </header>
 
-    <section class="term-entry-grid" aria-label="Main site areas">
-      <a class="term-entry-card" href="{{ '/' | relative_url }}">
-        <span class="entry-kicker">$ open blog/</span>
+  <main class="terminal-container">
+    <section class="creator-hero">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">{{ page.hero_eyebrow | default: site.author }}</p>
+        <h1>{{ page.hero_title | default: "A creator home for notes, games, and side projects." }}</h1>
+        <p class="hero-intro">{{ page.hero_intro | default: "I write to think, build to test ideas, and keep a public trail of the experiments worth revisiting." }}</p>
+        <p class="hero-note">{{ page.hero_note | default: "Start with the lane you want, then move into current work, selected writing, and the projects that are still alive." }}</p>
+      </div>
+      <div class="hero-aside">
+        <p class="aside-label">Current focus</p>
+        <ul>
+          <li>Building a personal site that can host both writing and playable work</li>
+          <li>Keeping game experiments and project notes close to the blog instead of splitting them apart</li>
+          <li>Turning rough ideas into public, maintainable pages</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lane-grid" aria-label="Main site areas">
+      <a class="lane-link" href="{{ '/' | relative_url }}">
+        <span class="lane-kicker">Writing</span>
         <strong>Blog</strong>
-        <span>Essays, notes, and writing from current work.</span>
+        <span>Essays, notes, and longer-form thinking.</span>
       </a>
-      <a class="term-entry-card" href="{{ '/games/' | relative_url }}">
-        <span class="entry-kicker">$ open games/</span>
+      <a class="lane-link" href="{{ '/games/' | relative_url }}">
+        <span class="lane-kicker">Playable</span>
         <strong>Games</strong>
-        <span>Playable experiments, prototypes, and web-first game work.</span>
+        <span>Web-first experiments, prototypes, and future playable pages.</span>
       </a>
-      <a class="term-entry-card" href="{{ '/projects/' | relative_url }}">
-        <span class="entry-kicker">$ open projects/</span>
+      <a class="lane-link" href="{{ '/projects/' | relative_url }}">
+        <span class="lane-kicker">Systems</span>
         <strong>Projects</strong>
-        <span>Tools, technical experiments, and everything that is not a game.</span>
+        <span>Tools, technical experiments, and the site itself.</span>
       </a>
     </section>
 
-    <div class="term-prompt-block">
-      <span class="prompt">$</span>
-      <span class="cmd">ls featured-writing/</span>
-    </div>
-    <p class="term-track-label">- latest dispatches -</p>
-    <div class="term-output">
+    <section class="creator-section">
+      <div class="section-heading">
+        <p class="section-kicker">Selected writing</p>
+        <h2>Recent posts</h2>
+        <p>{{ page.recent_writing_intro | default: "Three recent posts, chosen to make the tone of the site legible at a glance." }}</p>
+      </div>
+      <div class="term-output recent-posts">
       {% for post in featured_posts %}
         {% include terminal_line.html post=post %}
       {% endfor %}
-    </div>
+      </div>
+    </section>
 
-    <div class="term-prompt-block">
-      <span class="prompt">$</span>
-      <span class="cmd">ls featured-work/</span>
-    </div>
-    <p class="term-track-label">- entry points -</p>
-    <section class="term-work-grid" aria-label="Featured work">
+    <section class="creator-section">
+      <div class="section-heading">
+        <p class="section-kicker">Current work</p>
+        <h2>Featured entry points</h2>
+        <p>{{ page.work_intro | default: "Current work and stable entry points." }}</p>
+      </div>
+      <div class="work-grid" aria-label="Featured work">
       {% if featured_game %}
-      <a class="term-work-card" href="{% if featured_game.url and featured_game.url != '' %}{{ featured_game.url | relative_url }}{% else %}{{ '/games/' | relative_url }}{% endif %}">
-        <span class="work-label">{{ featured_game.platform }} / {{ featured_game.status }}</span>
-        <h2>{{ featured_game.title }}</h2>
+      <a class="work-item" href="{% if featured_game.url and featured_game.url != '' %}{{ featured_game.url | relative_url }}{% else %}{{ '/games/' | relative_url }}{% endif %}">
+        <p class="work-label">{{ featured_game.platform }} / {{ featured_game.status }}</p>
+        <h3>{{ featured_game.title }}</h3>
         <p>{{ featured_game.summary }}</p>
+        <span class="work-action">Open games</span>
       </a>
       {% endif %}
 
       {% if featured_project %}
-      <a class="term-work-card" href="{% if featured_project.url and featured_project.url != '' %}{{ featured_project.url | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}">
-        <span class="work-label">{{ featured_project.kind | replace: "-", " " }} / {{ featured_project.status }}</span>
-        <h2>{{ featured_project.title }}</h2>
+      <a class="work-item" href="{% if featured_project.url and featured_project.url != '' %}{{ featured_project.url | relative_url }}{% else %}{{ '/projects/' | relative_url }}{% endif %}">
+        <p class="work-label">{{ featured_project.kind | replace: "-", " " }} / {{ featured_project.status }}</p>
+        <h3>{{ featured_project.title }}</h3>
         <p>{{ featured_project.summary }}</p>
+        <span class="work-action">Open projects</span>
       </a>
       {% endif %}
 
-      <a class="term-work-card" href="{{ '/about/' | relative_url }}">
-        <span class="work-label">{{ page.about_card_meta | default: "Context / direction" }}</span>
-        <h2>{{ page.about_card_title | default: "About the Studio" }}</h2>
+      <a class="work-item" href="{{ '/about/' | relative_url }}">
+        <p class="work-label">{{ page.about_card_meta | default: "Context / direction" }}</p>
+        <h3>{{ page.about_card_title | default: "About the Studio" }}</h3>
         <p>{{ page.about_card_summary | default: "A short read on what I make, what I keep learning in public, and why this site exists in the first place." }}</p>
+        <span class="work-action">Read about</span>
       </a>
+      </div>
     </section>
 
-    <div class="term-split">
-      <section class="term-panel" aria-labelledby="about-teaser-title">
-        <div class="term-prompt-block">
-          <span class="prompt">$</span>
-          <span class="cmd">cat about.txt</span>
-        </div>
-        <h2 id="about-teaser-title">About</h2>
-        <p>
-          {{ page.about_teaser | default: "POCASTER builds in public through essays, game design thinking, and small experiments that stay readable after the first burst of excitement." }}
-        </p>
-        <a class="term-inline-link" href="{{ '/about/' | relative_url }}">Read the full about page</a>
+    <section class="creator-footer">
+      <div>
+        <p class="section-kicker">About</p>
+        <p>{{ page.about_teaser | default: "A short read on how I use this site, what I value, and why I keep the work public." }}</p>
       </section>
-
-      <section class="term-panel" aria-labelledby="contact-teaser-title">
-        <div class="term-prompt-block">
-          <span class="prompt">$</span>
-          <span class="cmd">cat contact.txt</span>
-        </div>
-        <h2 id="contact-teaser-title">Contact</h2>
-        <p>
-          {{ page.contact_teaser | default: "Reach out for project discussion, writing feedback, game-dev conversation, or interesting experiments worth comparing notes on." }}
-        </p>
-        <a class="term-inline-link" href="{{ '/contact/' | relative_url }}">Go to contact</a>
-      </section>
-    </div>
-
-    <div class="term-prompt-block">
-      <span class="prompt">$</span>
-      <span class="term-cursor"></span>
-    </div>
-
-    <p class="term-filter">Open a line to read a post, browse <a href="{{ '/tags/' | relative_url }}">tags</a>, or jump into the site sections above.</p>
+      <div>
+        <p class="section-kicker">Contact</p>
+        <p>{{ page.contact_teaser | default: "If you want to talk about games, tools, writing, or a project that overlaps with any of those, say hello." }}</p>
+      </div>
+      <div class="footer-actions">
+        <a href="{{ '/about/' | relative_url }}">About</a>
+        <a href="{{ '/contact/' | relative_url }}">Contact</a>
+        <a href="{{ '/tags/' | relative_url }}">Tags</a>
+      </div>
+    </section>
   </main>
-
 </body>
 </html>
