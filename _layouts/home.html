@@ -125,15 +125,7 @@ layout: null
       </div>
     </section>
 
-    <section class="creator-footer">
-      <div>
-        <p class="section-kicker">关于</p>
-        <p>{{ page.about_teaser | default: "这里能看到我是谁、我在做什么，以及这个网站为什么会长成现在这样。" }}</p>
-      </div>
-      <div>
-        <p class="section-kicker">联系</p>
-        <p>{{ page.contact_teaser | default: "如果你想聊聊游戏、写作、工具，或者只是想打个招呼，欢迎联系我。" }}</p>
-      </div>
+    <section class="creator-footer" aria-label="页脚导航">
       <div class="footer-actions">
         <a href="{{ '/about/' | relative_url }}">关于</a>
         <a href="{{ '/contact/' | relative_url }}">联系</a>
