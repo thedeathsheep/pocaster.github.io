@@ -211,6 +211,11 @@ body.terminal-home {
   border-top: 1px solid rgba(148, 163, 184, 0.1);
 }
 
+.creator-section--posts {
+  display: block;
+  padding-top: 1.35rem;
+}
+
 .section-heading h2 {
   margin: 0;
   font: 600 clamp(1.8rem, 3vw, 2.7rem)/1.05 var(--font-display);
@@ -313,7 +318,7 @@ body.terminal-home {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 1.2rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(148, 163, 184, 0.1);
 }
 
