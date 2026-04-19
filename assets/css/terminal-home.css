@@ -111,13 +111,13 @@ body.terminal-home {
 .terminal-container {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4.5rem;
+  padding: 2rem 1.5rem 4rem;
 }
 
 .creator-hero {
   display: block;
-  min-height: calc(100svh - 10rem);
-  padding: 2rem 0 2.2rem;
+  min-height: auto;
+  padding: 1.25rem 0 1.5rem;
 }
 
 .hero-copy,
@@ -131,7 +131,7 @@ body.terminal-home {
 .aside-label,
 .lane-kicker,
 .work-label {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.65rem;
   color: var(--home-accent-2);
   font: 500 0.76rem/1.4 var(--font-mono);
   letter-spacing: 0.14em;
@@ -148,10 +148,11 @@ body.terminal-home {
 }
 
 .hero-intro {
-  max-width: 20rem;
-  margin: 1.55rem 0 0;
+  max-width: 16rem;
+  margin: 0;
   color: var(--home-text);
-  font-size: 1rem;
+  font-size: 0.96rem;
+  line-height: 1.5;
 }
 
 .hero-note {
@@ -171,7 +172,7 @@ body.terminal-home {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.35rem;
-  padding: 0 0 2.9rem;
+  padding: 0 0 2.2rem;
 }
 
 .lane-link {
@@ -206,7 +207,7 @@ body.terminal-home {
   display: grid;
   grid-template-columns: minmax(220px, 0.9fr) minmax(0, 2fr);
   gap: 2rem;
-  padding: 2.45rem 0;
+  padding: 2rem 0;
   border-top: 1px solid rgba(148, 163, 184, 0.1);
 }
 
@@ -312,7 +313,7 @@ body.terminal-home {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 1.5rem;
+  padding-top: 1.2rem;
   border-top: 1px solid rgba(148, 163, 184, 0.1);
 }
 
@@ -378,12 +379,11 @@ body.terminal-home {
 @media (max-width: 720px) {
   .terminal-container {
     padding-top: 2rem;
-    padding-bottom: 3.4rem;
+    padding-bottom: 3rem;
   }
 
   .creator-hero {
-    min-height: auto;
-    padding-top: 1rem;
+    padding-top: 0.75rem;
   }
 
   .hero-copy h1 {

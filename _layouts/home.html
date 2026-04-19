@@ -35,14 +35,7 @@ layout: null
     <section class="creator-hero">
       <div class="hero-copy">
         <p class="hero-eyebrow">{{ page.hero_eyebrow | default: site.author }}</p>
-        <h1>{{ page.hero_title | default: "你好，这里是我写作、做游戏和放作品的地方。" }}</h1>
         <p class="hero-intro">{{ page.hero_intro | default: "我把文章、实验和项目放在同一个网站里，希望它更像一个长期更新的个人空间，而不是一份整理完就不再变化的档案。" }}</p>
-        {% if page.hero_note and page.hero_note != "" %}
-        <p class="hero-note">{{ page.hero_note | default: "如果你第一次来，可以先看看文章；如果你更关心作品，也可以直接去游戏和项目页。" }}</p>
-        {% endif %}
-        {% if page.hero_signoff and page.hero_signoff != "" %}
-        <p class="hero-signoff">{{ page.hero_signoff | default: "最近写得最多的是游戏、工具和那些一开始很小、后来慢慢长出来的项目。" }}</p>
-        {% endif %}
       </div>
     </section>
 
@@ -68,9 +61,6 @@ layout: null
       <div class="section-heading">
         <p class="section-kicker">最近写作</p>
         <h2>选三篇先看</h2>
-        {% if page.recent_writing_intro and page.recent_writing_intro != "" %}
-        <p>{{ page.recent_writing_intro | default: "先放三篇最近写的东西，方便快速了解我最近在想什么。" }}</p>
-        {% endif %}
       </div>
       <div class="term-output recent-posts">
         {% for post in featured_posts %}
@@ -83,9 +73,6 @@ layout: null
       <div class="section-heading">
         <p class="section-kicker">作品与入口</p>
         <h2>也可以从这里开始</h2>
-        {% if page.work_intro and page.work_intro != "" %}
-        <p>{{ page.work_intro | default: "这里放的是我最近最想让人看到的几块内容。" }}</p>
-        {% endif %}
       </div>
       <div class="work-grid" aria-label="精选入口">
         {% if featured_game %}
