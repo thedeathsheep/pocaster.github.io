@@ -1,0 +1,43 @@
+---
+layout: base
+---
+
+<main class="case-study-shell">
+  <article class="case-study case-study--{{ page.case_theme | default: 'default' }}">
+    <header class="case-study-hero">
+      <div class="case-study-hero-copy">
+        <a class="case-study-back" href="{{ '/projects/' | relative_url }}">← 所有项目</a>
+        <p class="case-study-kicker">{{ page.case_kind | default: "个人项目 / Case Study" }}</p>
+        <h1>{{ page.title }}</h1>
+        {% if page.subtitle %}
+          <p class="case-study-lede">{{ page.subtitle }}</p>
+        {% endif %}
+        {% if page.role or page.scope or page.product_status %}
+          <dl class="case-study-facts">
+            {% if page.role %}
+              <div><dt>角色</dt><dd>{{ page.role }}</dd></div>
+            {% endif %}
+            {% if page.scope %}
+              <div><dt>工作范围</dt><dd>{{ page.scope }}</dd></div>
+            {% endif %}
+            {% if page.product_status %}
+              <div><dt>当前状态</dt><dd>{{ page.product_status }}</dd></div>
+            {% endif %}
+          </dl>
+        {% endif %}
+      </div>
+      <div class="case-study-actions" aria-label="项目链接">
+        {% if page.live_url and page.live_url != "" %}
+          <a class="case-study-action case-study-action--primary" href="{{ page.live_url }}" target="_blank" rel="noopener noreferrer">{{ page.live_label | default: "在线体验" }} <span aria-hidden="true">↗</span></a>
+        {% endif %}
+        {% if page.source_url and page.source_url != "" %}
+          <a class="case-study-action" href="{{ page.source_url }}" target="_blank" rel="noopener noreferrer">查看源文件 <span aria-hidden="true">↗</span></a>
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="case-study-body">
+      {{ content }}
+    </div>
+  </article>
+</main>

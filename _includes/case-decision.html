@@ -1,0 +1,12 @@
+<section class="case-study-decision" aria-labelledby="{{ include.id }}">
+  <p class="case-study-decision__index">{{ include.index }}</p>
+  <div>
+    <h3 id="{{ include.id }}">{{ include.title }}</h3>
+    <p><strong>问题：</strong>{{ include.problem }}</p>
+    <p><strong>判断：</strong>{{ include.decision }}</p>
+    <p><strong>落地：</strong>{{ include.action }}</p>
+    {% if include.result %}
+      <p><strong>结果：</strong>{{ include.result }}</p>
+    {% endif %}
+  </div>
+</section>

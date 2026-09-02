@@ -55,6 +55,33 @@ layout: null
       </a>
     </section>
 
+    {% if site.data.projects and site.data.projects.size > 0 %}
+    <section class="creator-section creator-section--work" aria-label="精选作品">
+      <div class="section-heading">
+        <p class="section-kicker">精选作品</p>
+        <h2>正在做的东西</h2>
+        <p>先看两个正在持续迭代的个人项目，完整目录在项目页。</p>
+      </div>
+      <div class="work-grid">
+        {% for project in site.data.projects %}
+        <article class="work-item">
+          <p class="work-label">{{ project.case_kind | default: "项目案例" }}</p>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.summary }}</p>
+          <div class="work-links">
+            {% if project.case_url and project.case_url != "" %}
+              <a class="work-action" href="{{ project.case_url | relative_url }}">查看案例 <span aria-hidden="true">↗</span></a>
+            {% endif %}
+            {% if project.live_url and project.live_url != "" %}
+              <a class="work-action" href="{{ project.live_url }}" target="_blank" rel="noopener noreferrer">在线体验 <span aria-hidden="true">↗</span></a>
+            {% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
     <section class="creator-section creator-section--posts">
       <div class="term-output recent-posts" aria-label="全部文章">
         {% for post in all_posts %}

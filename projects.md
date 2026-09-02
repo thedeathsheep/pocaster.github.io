@@ -17,58 +17,26 @@ subtitle: 工具、实验，以及那些不属于“游戏”分类的长期工�
     {% if site.data.projects and site.data.projects.size > 0 %}
     {% for project in site.data.projects %}
       <article class="content-card">
-        <div class="content-card-header">
-          <div>
-            <p class="content-card-label">{{ project.kind | replace: "-", " " }}</p>
-            <h3>{{ project.title }}</h3>
-          </div>
-          <span class="status-chip status-{{ project.status }}">
-            {% case project.status %}
-              {% when 'active' %}进行中
-              {% when 'planning' %}筹备中
-              {% when 'paused' %}暂停
-              {% when 'archived' %}归档
-              {% else %}{{ project.status }}
-            {% endcase %}
-          </span>
-        </div>
+        <h3>{{ project.title }}</h3>
 
         <p>{{ project.summary }}</p>
 
-        {% if project.stack %}
-          <ul class="content-meta-list">
-            {% for item in project.stack %}
-              <li>{{ item }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-
-        {% if project.url and project.url != "" %}
-          <p class="content-card-link">
-            <a href="{{ project.url | relative_url }}">{{ project.cta_label | default: "查看" }}</a>
-          </p>
-        {% endif %}
+        <p class="content-card-link">
+          {% if project.case_url and project.case_url != "" %}
+            <a href="{{ project.case_url | relative_url }}">查看案例</a>
+          {% endif %}
+          {% if project.live_url and project.live_url != "" %}
+            <a href="{{ project.live_url }}" target="_blank" rel="noopener noreferrer">{{ project.live_label | default: "在线体验" }}</a>
+          {% endif %}
+        </p>
       </article>
     {% endfor %}
     {% else %}
       <article class="content-card">
-        <div class="content-card-header">
-          <div>
-            <p class="content-card-label">archive</p>
-            <h3>还没有项目条目</h3>
-          </div>
-          <span class="status-chip status-planning">筹备中</span>
-        </div>
+        <h3>还没有项目条目</h3>
         <p>这里已经给工具、实验和长期 side project 预留好了位置，等条目准备好就可以直接挂进来。</p>
       </article>
     {% endif %}
   </div>
 
-  <h2>这一页的内容范围</h2>
-
-  <ul>
-    <li>站点本身和一些小工具。</li>
-    <li>不属于游戏分类的技术实验或创意项目。</li>
-    <li>那些值得拥有自己位置的长期个人作品。</li>
-  </ul>
 </div>

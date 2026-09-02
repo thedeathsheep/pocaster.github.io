@@ -1,0 +1,6 @@
+<figure class="case-study-figure{% if include.variant %} case-study-figure--{{ include.variant }}{% endif %}">
+  <img src="{{ include.src | relative_url }}" alt="{{ include.alt }}" loading="lazy">
+  {% if include.caption %}
+    <figcaption>{{ include.caption }}</figcaption>
+  {% endif %}
+</figure>
