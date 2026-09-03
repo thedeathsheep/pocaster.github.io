@@ -29,7 +29,7 @@ permalink: /projects/3d-directors-desk/
 
 研究先从公开教程、评论和搜索信号形成假设，再结合竞品流程、对象/机位组织和真实工作材料收敛。最终被固定成一个可重复任务：给定双人对话、角色和场景素材，产出主镜头、A 过肩、B 反打并回写画布。
 {% include case-evidence.html id="director-baseline" index="01" src="/assets/img/projects/3d-directors-desk/director-panel.png" alt="竞品导演台对象调度界面" claim="COMPETITOR REFERENCE / OBJECT CONTROL" caption="竞品基线证明了对象、舞台变换和属性调节的必要性；它也提醒我，专业控制不能成为新手的默认语言。" note="此图是竞品走查材料，不是本人开发界面。" %}
-{% include case-evidence.html id="director-node" index="02" src="/assets/img/projects/3d-directors-desk/evidence/director-node-centered.png" alt="竞品导演节点界面" claim="COMPETITOR REFERENCE / DIRECTOR ENTRY" caption="导演台需要从画布上下文进入，而不是另起一个与镜头生产脱节的 3D 工具。" %}
+{% include case-evidence.html id="director-node" index="02" wide=true src="/assets/img/projects/3d-directors-desk/evidence/director-canvas-overview.png" alt="画布中的3D导演台节点与镜头关系" claim="PRODUCT WALKTHROUGH / DIRECTOR AS A NODE" caption="导演台不是独立的 3D 房间，而是画布中连接场景、文本、资产和镜头结果的生产节点。" note="真实走查图：用画布关系解释导演台为何存在。" %}
 {% include case-evidence.html id="director-golden-task" index="03" src="/assets/img/projects/3d-directors-desk/evidence/golden-task.svg" alt="导演台黄金任务流程" claim="RESEARCH PROTOCOL / GOLDEN TASK" caption="验证对象被固定为：带入素材、完成站位、生成覆盖镜头、回写画布；停留时长不是价值指标。" %}
 
 <span id="tension"></span>
@@ -47,7 +47,7 @@ permalink: /projects/3d-directors-desk/
 ## Prototype / the minimum believable loop
 
 MVP 被压缩为四步：选任务、摆调度、出镜头、回写画布。默认视图采用俯视/2D 导演模式；用户拖动角色、设置面向、选择过肩/近景等语义镜头，再获得一组可继续生成的参考。
-{% include case-evidence.html id="director-world" index="05" src="/assets/img/projects/3d-directors-desk/evidence/world-config.png" alt="3D 场景配置与导演台入口" claim="COMPETITOR REFERENCE / SCENE SETUP" caption="场景配置是生产前的准备步骤，而不是另一个孤立的创作终点。" note="能力走查用于拆分必须有的舞台操作和不应复制的专业负担。" %}
+{% include case-evidence.html id="director-world" index="05" wide=true src="/assets/img/projects/3d-directors-desk/evidence/director-world-setup.png" alt="3D场景配置与导演台入口" claim="PRODUCT WALKTHROUGH / SCENE BEFORE SHOT" caption="场景配置先解决空间、资产与镜头的关系，再进入具体镜头规划。" note="真实走查图：能力拆解聚焦必须保留的舞台操作，而不是复制专业软件的全部负担。" %}
 关闭只保存工程；截图生成图片节点；导出才生成预演视频节点。三个动作的产品语义不能混成一次“生成”。
 
 <span id="validation"></span>

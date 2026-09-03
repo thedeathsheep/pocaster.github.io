@@ -32,8 +32,8 @@ permalink: /projects/infinite-canvas/
 
 这项工作经过竞品结论、一期/二期 PRD、P0 评审、节点原型、导入方案、反馈转需求和协作规则等多轮收敛。下面的证据不是界面展示，而是每个产品判断的来源。
 
-{% include case-evidence.html id="canvas-nodes" index="01" src="/assets/img/projects/infinite-canvas/evidence/canvas-nodes.png" alt="短剧画布中的多类内容节点" claim="PROTOTYPE / NODES AS PRODUCTION OBJECTS" caption="文本、资产、镜头和结果必须对应真实生产动作，才能被下一步引用。" note="当节点有明确类型、来源和可执行动作，用户才不需要在每次生成前重新解释当前项目。" %}
-{% include case-evidence.html id="canvas-assets" index="02" src="/assets/img/projects/infinite-canvas/evidence/canvas-assets.png" alt="画布中的资产组织界面" claim="RELEASE MATERIAL / ASSET CONTEXT" caption="角色、场景、道具和参考素材不是孤立文件，而是镜头生成的上下文。" %}
+{% include case-evidence.html id="canvas-overview" index="01" wide=true src="/assets/img/projects/infinite-canvas/evidence/canvas-overview.png" alt="无限画布中的文本节点与生成入口" claim="PRODUCT WALKTHROUGH / THE CANVAS AS A WORKSPACE" caption="从文本节点到生成入口，画布把创作上下文留在同一工作面上。" note="真实走查图：重点不是界面数量，而是用户能否从已有内容继续下一步。" %}
+{% include case-evidence.html id="canvas-assets" index="02" wide=true src="/assets/img/projects/infinite-canvas/evidence/asset-library-release.png" alt="发布版本中的资产库" claim="RELEASE MATERIAL / ASSETS WITH CONTEXT" caption="资产库承接角色、场景、道具和参考图，成为创作链路中的可复用资源层。" %}
 {% include case-evidence.html id="canvas-map" index="03" src="/assets/img/projects/infinite-canvas/evidence/canvas-system-map.svg" alt="画布对象与生产链关系图" claim="SYSTEM MODEL / SOURCE TO RESULT" caption="脚本提供来源，资产提供上下文，镜头承载任务，结果保留版本与采用状态。" %}
 
 <span id="tension"></span>

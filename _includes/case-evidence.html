@@ -1,4 +1,4 @@
-<figure class="case-evidence" id="{{ include.id }}">
+<figure class="case-evidence{% if include.wide %} case-evidence--wide{% endif %}" id="{{ include.id }}">
   <div class="case-evidence__media">
     <span class="case-evidence__index">EVIDENCE / {{ include.index | default: '01' }}</span>
     <img src="{{ include.src | relative_url }}" alt="{{ include.alt }}">
