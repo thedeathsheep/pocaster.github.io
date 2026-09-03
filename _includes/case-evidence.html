@@ -1,0 +1,11 @@
+<figure class="case-evidence" id="{{ include.id }}">
+  <div class="case-evidence__media">
+    <span class="case-evidence__index">EVIDENCE / {{ include.index | default: '01' }}</span>
+    <img src="{{ include.src | relative_url }}" alt="{{ include.alt }}">
+  </div>
+  <figcaption>
+    <span class="case-evidence__claim">{{ include.claim }}</span>
+    <span class="case-evidence__caption">{{ include.caption }}</span>
+  </figcaption>
+  {% if include.note %}<aside class="case-evidence__note"><b>READING</b>{{ include.note }}</aside>{% endif %}
+</figure>

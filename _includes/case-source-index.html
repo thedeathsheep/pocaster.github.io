@@ -1,0 +1,5 @@
+<section class="case-source-index" id="{{ include.id | default: 'archive' }}">
+  <p class="case-source-index__eyebrow">PRIVATE ARCHIVE / SOURCE INDEX</p>
+  <p>{{ include.note | default: 'Original working documents are private. The public page preserves the decisions and evidence that can be safely shared.' }}</p>
+  <ol>{% for source in include.sources %}<li>{{ source }}</li>{% endfor %}</ol>
+</section>

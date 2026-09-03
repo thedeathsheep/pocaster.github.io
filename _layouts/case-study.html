@@ -2,12 +2,12 @@
 layout: base
 ---
 
-<main class="case-study-shell">
+<main class="case-study-shell{% if page.case_format == 'dossier' %} case-dossier-shell{% endif %}">
   <article class="case-study case-study--{{ page.case_theme | default: 'default' }}">
     <header class="case-study-hero">
       <div class="case-study-hero-copy">
-        <a class="case-study-back" href="{{ '/projects/' | relative_url }}">← 所有项目</a>
-        <p class="case-study-kicker">{{ page.case_kind | default: "个人项目 / Case Study" }}</p>
+        <a class="case-study-back" href="{{ '/projects/' | relative_url }}">← All projects</a>
+        <p class="case-study-kicker">{{ page.case_kind | default: "Independent project / Case study" }}</p>
         <h1>{{ page.title }}</h1>
         {% if page.subtitle %}
           <p class="case-study-lede">{{ page.subtitle }}</p>
@@ -15,29 +15,47 @@ layout: base
         {% if page.role or page.scope or page.product_status %}
           <dl class="case-study-facts">
             {% if page.role %}
-              <div><dt>角色</dt><dd>{{ page.role }}</dd></div>
+              <div><dt>Role</dt><dd>{{ page.role }}</dd></div>
             {% endif %}
             {% if page.scope %}
-              <div><dt>工作范围</dt><dd>{{ page.scope }}</dd></div>
+              <div><dt>Scope</dt><dd>{{ page.scope }}</dd></div>
             {% endif %}
             {% if page.product_status %}
-              <div><dt>当前状态</dt><dd>{{ page.product_status }}</dd></div>
+              <div><dt>Status</dt><dd>{{ page.product_status }}</dd></div>
             {% endif %}
           </dl>
         {% endif %}
       </div>
-      <div class="case-study-actions" aria-label="项目链接">
+      <div class="case-study-actions" aria-label="Project links">
         {% if page.live_url and page.live_url != "" %}
-          <a class="case-study-action case-study-action--primary" href="{{ page.live_url }}" target="_blank" rel="noopener noreferrer">{{ page.live_label | default: "在线体验" }} <span aria-hidden="true">↗</span></a>
+          <a class="case-study-action case-study-action--primary" href="{{ page.live_url }}" target="_blank" rel="noopener noreferrer">{{ page.live_label | default: "Live prototype" }} <span aria-hidden="true">↗</span></a>
         {% endif %}
         {% if page.source_url and page.source_url != "" %}
-          <a class="case-study-action" href="{{ page.source_url }}" target="_blank" rel="noopener noreferrer">查看源文件 <span aria-hidden="true">↗</span></a>
+          <a class="case-study-action" href="{{ page.source_url }}" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>
         {% endif %}
       </div>
     </header>
 
-    <div class="case-study-body">
-      {{ content }}
-    </div>
+    {% if page.case_format == 'dossier' %}
+      <div class="case-dossier-layout">
+        <aside class="case-dossier-rail" aria-label="Case study sections">
+          <span class="case-dossier-rail__title">Reading order</span>
+          <a href="#situation">01 / Situation</a>
+          <a href="#evidence">02 / Evidence</a>
+          <a href="#tension">03 / Tension</a>
+          <a href="#decisions">04 / Decisions</a>
+          <a href="#prototype">05 / Prototype</a>
+          <a href="#validation">06 / Validation</a>
+          <a href="#archive">07 / Archive</a>
+        </aside>
+        <div class="case-study-body case-dossier-body">
+          {{ content }}
+        </div>
+      </div>
+    {% else %}
+      <div class="case-study-body">
+        {{ content }}
+      </div>
+    {% endif %}
   </article>
 </main>

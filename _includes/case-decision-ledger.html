@@ -1,0 +1,9 @@
+<section class="case-ledger" id="{{ include.id }}">
+  <div class="case-ledger__title">DECISION LEDGER / {{ include.index | default: '01' }}</div>
+  <dl>
+    <div><dt>Alternatives</dt><dd>{{ include.alternatives }}</dd></div>
+    <div><dt>Decision</dt><dd>{{ include.decision }}</dd></div>
+    <div><dt>Why now</dt><dd>{{ include.why_now }}</dd></div>
+    <div><dt>Excluded</dt><dd>{{ include.excluded }}</dd></div>
+  </dl>
+</section>
