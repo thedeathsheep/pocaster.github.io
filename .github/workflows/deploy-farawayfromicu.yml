@@ -40,12 +40,12 @@ jobs:
           ssh "$DEPLOY_USER@$DEPLOY_HOST" <<'REMOTE'
           set -e
           timestamp=$(date +%Y%m%d-%H%M%S)
-          sudo cp -a "$DEPLOY_PATH" "/var/www/portfolio-backup-$timestamp"
-          sudo find "$DEPLOY_PATH" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
-          sudo cp -a /tmp/portfolio-release/. "$DEPLOY_PATH/"
-          sudo chown -R www-data:www-data "$DEPLOY_PATH"
-          sudo find "$DEPLOY_PATH" -type d -exec chmod 755 {} \;
-          sudo find "$DEPLOY_PATH" -type f -exec chmod 644 {} \;
+          sudo cp -a /var/www/portfolio "/var/www/portfolio-backup-$timestamp"
+          sudo find /var/www/portfolio -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+          sudo cp -a /tmp/portfolio-release/. /var/www/portfolio/
+          sudo chown -R www-data:www-data /var/www/portfolio
+          sudo find /var/www/portfolio -type d -exec chmod 755 {} \;
+          sudo find /var/www/portfolio -type f -exec chmod 644 {} \;
           sudo nginx -t
           sudo systemctl reload nginx
           REMOTE
