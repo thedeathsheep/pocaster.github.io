@@ -70,7 +70,7 @@
 .case-evidence__media { position: relative; grid-column: 1 / -1; overflow: hidden; border: 1px solid var(--case-rule); background: #0b121b; }
 .case-evidence__media img { display: block; width: 100%; height: auto; }
 .case-evidence--wide .case-evidence__media { aspect-ratio: 16 / 7.5; display: grid; place-items: center; }
-.case-evidence--wide .case-evidence__media img { width: 100%; height: 100%; object-fit: cover; object-position: left center; }
+.case-evidence--wide .case-evidence__media img { width: 100%; height: 100%; object-fit: cover; object-position: left top; transform: scale(1.45); transform-origin: left top; }
 .case-evidence--wide .case-evidence__media::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 -4rem 5rem rgba(0,0,0,.16); }
 .case-evidence__index { position: absolute; z-index: 1; top: .65rem; left: .75rem; padding: .25rem .4rem; background: rgba(9,16,25,.82); color: var(--case-accent); font-size: .62rem; letter-spacing: .08em; }
 .case-evidence figcaption { display: grid; gap: .45rem; padding-top: .15rem; }
