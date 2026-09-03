@@ -1,170 +1,51 @@
-name: Deploy farawayfromicu to Windows Server
+name: Deploy portfolio to Tencent Cloud
 
 on:
   push:
-    branches: ["main"]
+    branches: [redesign-frame-system]
   workflow_dispatch:
 
 concurrency:
-  group: farawayfromicu-deploy
-  cancel-in-progress: false
+  group: portfolio-deploy
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      FARAWAY_SSH_HOST: ${{ secrets.FARAWAY_SSH_HOST }}
-      FARAWAY_SSH_USER: ${{ secrets.FARAWAY_SSH_USER }}
-      FARAWAY_SSH_KEY: ${{ secrets.FARAWAY_SSH_KEY }}
+      DEPLOY_HOST: 139.155.139.62
+      DEPLOY_USER: ubuntu
+      DEPLOY_PATH: /var/www/portfolio
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Set up Ruby
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
+          ruby-version: '3.3'
           bundler-cache: true
-
       - name: Build Jekyll site
         run: bundle exec jekyll build
-
-      - name: Package site
-        shell: pwsh
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+      - name: Trust server and upload build
         run: |
-          if (Test-Path "./site.zip") {
-            Remove-Item "./site.zip" -Force
-          }
-          Compress-Archive -Path "./_site/*" -DestinationPath "./site.zip" -Force
-          Get-Item "./site.zip" | Select-Object FullName, Length
-
-      - name: Prepare SSH key and known hosts
-        shell: pwsh
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+          rsync -az --delete _site/ "$DEPLOY_USER@$DEPLOY_HOST:/tmp/portfolio-release/"
+      - name: Activate release
         run: |
-          $sshDir = Join-Path $HOME ".ssh"
-          New-Item -ItemType Directory -Force -Path $sshDir | Out-Null
-
-          $keyPath = Join-Path $env:RUNNER_TEMP "farawayfromicu_deploy_key"
-          Set-Content -Path $keyPath -Value $env:FARAWAY_SSH_KEY -NoNewline
-          & chmod 600 $keyPath
-
-          $knownHosts = Join-Path $sshDir "known_hosts"
-          ssh-keyscan -H $env:FARAWAY_SSH_HOST | Out-File -FilePath $knownHosts -Append -Encoding ascii
-
-      - name: Upload archive
-        shell: pwsh
-        run: |
-          $keyPath = Join-Path $env:RUNNER_TEMP "farawayfromicu_deploy_key"
-          $remoteTarget = "$($env:FARAWAY_SSH_USER)@$($env:FARAWAY_SSH_HOST)"
-          $batchPath = Join-Path $env:RUNNER_TEMP "farawayfromicu-upload.sftp"
-          @(
-            "put ./site.zip /C:/inetpub/wwwroot/site.zip"
-          ) | Set-Content -Path $batchPath
-          & sftp -i $keyPath -o StrictHostKeyChecking=yes -b $batchPath $remoteTarget
-
-      - name: Upload deploy script
-        shell: pwsh
-        run: |
-          $keyPath = Join-Path $env:RUNNER_TEMP "farawayfromicu_deploy_key"
-          $remoteTarget = "$($env:FARAWAY_SSH_USER)@$($env:FARAWAY_SSH_HOST)"
-          $batchPath = Join-Path $env:RUNNER_TEMP "farawayfromicu-script-upload.sftp"
-          $remoteScriptPath = Join-Path $env:RUNNER_TEMP "deploy-farawayfromicu.ps1"
-          $remoteScript = @'
-          $ErrorActionPreference = 'Stop'
-
-          function Copy-DirectoryContents {
-              param(
-                  [Parameter(Mandatory = $true)][string]$Source,
-                  [Parameter(Mandatory = $true)][string]$Destination
-              )
-
-              if (!(Test-Path $Destination)) {
-                  New-Item -ItemType Directory -Force -Path $Destination | Out-Null
-              }
-
-              Get-ChildItem -LiteralPath $Source -Force | ForEach-Object {
-                  Copy-Item -LiteralPath $_.FullName -Destination $Destination -Recurse -Force
-              }
-          }
-
-          function Clear-ManagedSite {
-              param(
-                  [Parameter(Mandatory = $true)][string]$Path,
-                  [string[]]$Preserve = @()
-              )
-
-              if (!(Test-Path $Path)) {
-                  return
-              }
-
-              Get-ChildItem -LiteralPath $Path -Force | Where-Object {
-                  $Preserve -notcontains $_.Name
-              } | ForEach-Object {
-                  Remove-Item -LiteralPath $_.FullName -Recurse -Force
-              }
-          }
-
-          $siteRoot = 'C:\inetpub\wwwroot\farawayfromicu'
-          $backupRoot = 'C:\inetpub\wwwroot\_deploy_backups'
-          $stagingRoot = 'C:\inetpub\wwwroot\_deploy_staging'
-          $archive = 'C:\inetpub\wwwroot\site.zip'
-          $timestamp = Get-Date -Format 'yyyyMMdd-HHmmss'
-          $backupPath = Join-Path $backupRoot "farawayfromicu-$timestamp"
-          $stagingPath = Join-Path $stagingRoot "farawayfromicu-$timestamp"
-          $preserve = @('web.config')
-
-          New-Item -ItemType Directory -Force -Path $backupRoot | Out-Null
-          New-Item -ItemType Directory -Force -Path $stagingRoot | Out-Null
-          New-Item -ItemType Directory -Force -Path $siteRoot | Out-Null
-          New-Item -ItemType Directory -Force -Path $stagingPath | Out-Null
-
-          try {
-              tar -xf $archive -C $stagingPath
-
-              if (!(Test-Path (Join-Path $stagingPath 'index.html'))) {
-                  throw 'Deployment archive is missing index.html after extraction.'
-              }
-
-              New-Item -ItemType Directory -Force -Path $backupPath | Out-Null
-              Copy-DirectoryContents -Source $siteRoot -Destination $backupPath
-
-              try {
-                  Clear-ManagedSite -Path $siteRoot -Preserve $preserve
-                  Copy-DirectoryContents -Source $stagingPath -Destination $siteRoot
-              }
-              catch {
-                  Clear-ManagedSite -Path $siteRoot -Preserve $preserve
-                  Copy-DirectoryContents -Source $backupPath -Destination $siteRoot
-                  throw
-              }
-          }
-          finally {
-              if (Test-Path $archive) {
-                  Remove-Item -LiteralPath $archive -Force
-              }
-              if (Test-Path $stagingPath) {
-                  Remove-Item -LiteralPath $stagingPath -Recurse -Force
-              }
-          }
-          '@
-
-          Set-Content -Path $remoteScriptPath -Value $remoteScript
-          @(
-            "put $remoteScriptPath /C:/inetpub/wwwroot/deploy-farawayfromicu.ps1"
-          ) | Set-Content -Path $batchPath
-          & sftp -i $keyPath -o StrictHostKeyChecking=yes -b $batchPath $remoteTarget
-
-      - name: Backup and deploy on Windows Server
-        shell: pwsh
-        run: |
-          $keyPath = Join-Path $env:RUNNER_TEMP "farawayfromicu_deploy_key"
-          $remoteTarget = "$($env:FARAWAY_SSH_USER)@$($env:FARAWAY_SSH_HOST)"
-          & ssh -i $keyPath -o StrictHostKeyChecking=yes $remoteTarget "powershell -NoProfile -ExecutionPolicy Bypass -File C:\inetpub\wwwroot\deploy-farawayfromicu.ps1"
-
-      - name: Cleanup deploy script on Windows Server
-        if: always()
-        shell: pwsh
-        run: |
-          $keyPath = Join-Path $env:RUNNER_TEMP "farawayfromicu_deploy_key"
-          $remoteTarget = "$($env:FARAWAY_SSH_USER)@$($env:FARAWAY_SSH_HOST)"
-          & ssh -i $keyPath -o StrictHostKeyChecking=yes $remoteTarget "cmd /c del /f /q C:\inetpub\wwwroot\deploy-farawayfromicu.ps1"
+          ssh "$DEPLOY_USER@$DEPLOY_HOST" <<'REMOTE'
+          set -e
+          timestamp=$(date +%Y%m%d-%H%M%S)
+          sudo cp -a "$DEPLOY_PATH" "/var/www/portfolio-backup-$timestamp"
+          sudo find "$DEPLOY_PATH" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+          sudo cp -a /tmp/portfolio-release/. "$DEPLOY_PATH/"
+          sudo chown -R www-data:www-data "$DEPLOY_PATH"
+          sudo find "$DEPLOY_PATH" -type d -exec chmod 755 {} \;
+          sudo find "$DEPLOY_PATH" -type f -exec chmod 644 {} \;
+          sudo nginx -t
+          sudo systemctl reload nginx
+          REMOTE
