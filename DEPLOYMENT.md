@@ -2,41 +2,9 @@
 
 本文档记录个人主页的本地开发、提交和服务器部署方式。
 
-## 0. 项目概况
+## 0. 项目资料
 
-Inevitable Event 是一个个人产品研究与创作档案站，不是单纯的作品集或博客。内容分为三条线：
-
-- **Product cases**：AI 产品、创作工具和交互系统的完整案例，重点呈现问题、研究、判断、原型和验证方式；
-- **Writing**：关于 AI 产品、生成式工具、游戏、叙事系统和创作流程的文章；
-- **Experiments**：独立开发或概念验证项目，用于展示产品理念、交互机制和技术路径。
-
-当前站点的设计方向是 editorial / research dossier：用编辑型排版组织研究证据，而不是把页面做成普通 SaaS 展示页。
-
-### 当前主要页面
-
-| 页面 | 文件或路径 | 用途 |
-| --- | --- | --- |
-| 首页 | `index.html` | 个人定位、精选项目、文章与实验入口 |
-| 项目列表 | `projects/index.md` | 所有公开案例和产品探索 |
-| Infinite Canvas | `projects/infinite-canvas.md` | AI 短剧生产画布案例 |
-| 3D Director's Desk | `projects/3d-directors-desk.md` | 3D 导演台研究与 MVP 案例 |
-| Writing | `writing.md` | 文章目录 |
-| About | `about.md` | 个人介绍、工作方式与联系信息 |
-
-### 项目内容关系
-
-```text
-首页
-├── Product cases
-│   ├── Infinite Canvas
-│   └── 3D Director's Desk
-├── Writing
-└── Experiments
-    ├── Echo
-    └── Another History
-```
-
-Echo 和 Another History 是独立项目，不属于主站的产品案例正文。它们有自己的项目目录和部署路径，不能在更新主站时误删或覆盖。
+项目定位、信息架构、关键页面、关联部署及公开材料边界统一记录在 [`PROJECT.md`](PROJECT.md)。视觉和文字规则记录在 [`STYLE.md`](STYLE.md)，当前工作状态记录在 [`CURRENT.md`](CURRENT.md)。
 
 ## 0.1 仓库目录说明
 
@@ -98,19 +66,6 @@ assets/css/case-study.css
 ```
 
 原始飞书文档、客户资料和内部链接不直接放入公开页面。公开案例只保留经过整理的研究结论、产品判断、可发布截图和自绘示意图。
-
-## 0.2 外部项目与域名
-
-主站服务器上的 Nginx 站点关系如下：
-
-| 域名 | 服务器目录 | 项目性质 |
-| --- | --- | --- |
-| `inevitable-event.com` | `/var/www/portfolio` | 本 Jekyll 个人主页 |
-| `www.inevitable-event.com` | 同主站配置 | 主站别名 |
-| `echo.inevitable-event.com` | `/var/www/echo` | Echo 独立项目 |
-| `history.inevitable-event.com` | `/var/www/anotherhistory` | Another History 独立项目 |
-
-更新个人主页时，只能部署到 `/var/www/portfolio`。不要对 `/var/www/echo` 或 `/var/www/anotherhistory` 执行清空和替换操作。
 
 ## 1. 项目与服务器
 
