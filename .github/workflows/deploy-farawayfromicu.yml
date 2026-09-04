@@ -33,11 +33,13 @@ jobs:
       - name: Trust server and upload build
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
-          rsync -az --delete _site/ "$DEPLOY_USER@$DEPLOY_HOST:/tmp/portfolio-release/"
+          ssh-keyscan -T 15 -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+          rsync -az --delete \
+            -e "ssh -o BatchMode=yes -o ConnectTimeout=15" \
+            _site/ "$DEPLOY_USER@$DEPLOY_HOST:/tmp/portfolio-release/"
       - name: Activate release
         run: |
-          ssh "$DEPLOY_USER@$DEPLOY_HOST" <<'REMOTE'
+          ssh -o BatchMode=yes -o ConnectTimeout=15 "$DEPLOY_USER@$DEPLOY_HOST" <<'REMOTE'
           set -e
           timestamp=$(date +%Y%m%d-%H%M%S)
           sudo cp -a /var/www/portfolio "/var/www/portfolio-backup-$timestamp"
