@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby '>= 3.3.7'
+# ruby version relaxed for build environment
 
 gemspec
 

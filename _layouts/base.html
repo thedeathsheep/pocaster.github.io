@@ -20,22 +20,23 @@ common-js:
 ---
 
 <!DOCTYPE html>
-<html lang="{{ page.language | default: site.language | default: 'en' }}">
-<!-- Beautiful Jekyll 6.0.1 | Copyright Dean Attali 2023 -->
+<html lang="{{ page.language | default: site.language | default: 'zh-CN' }}">
+
 {% include head.html %}
 
-<body class="site-theme-unified">
-  <div class="term-bg term-bg--pages" aria-hidden="true"></div>
-  <div class="term-overlay term-overlay--pages" aria-hidden="true"></div>
+<body class="site-theme-ie">
   {% include gtm_body.html %}
 
-  {% include nav.html %}
+  {% include ie-nav.html %}
 
-  {{ content }}
+  <div class="ie-page-content">
+    {{ content }}
+  </div>
 
-  {% include footer.html %}
+  {% include ie-footer.html %}
 
   {% include footer-scripts.html %}
+  <script src="{{ '/assets/js/ie-main.js' | relative_url }}" defer></script>
 
 </body>
 </html>

@@ -1,15 +1,16 @@
 ---
 layout: case-study
-title: "行旅 · Another History"
-subtitle: "让角色、记忆与世界状态持续转化为可执行的行动与后果，而不是无约束地续写一段故事。"
-case_kind: "个人项目 / 生成式互动叙事 Case"
+title: "Another History"
+subtitle: "A narrative system where character, memory, and world state become accountable actions and consequences—not unconstrained continuation."
+case_kind: "Independent project / Generative narrative case"
 case_theme: "another-history"
-role: "产品定义、叙事系统设计与原型开发"
-scope: "体验目标 / MVP / 规则系统 / AI 边界"
-product_status: "可玩原型 · 骨架模式 / BYOK 动态模式"
+role: "Product definition, narrative systems, and prototyping"
+scope: "Experience goals / MVP / Rule systems / AI boundaries"
+product_status: "Playable prototype · Skeleton mode / Dynamic BYOK mode"
 live_url: "https://history.inevitable-event.com/"
-live_label: "在线体验 Another History"
+live_label: "Play Another History"
 permalink: /projects/another-history/
+preview_img: "/assets/img/projects/another-history/journey.png"
 ---
 
 ## 不是让模型续写，而是让玩家能走进去

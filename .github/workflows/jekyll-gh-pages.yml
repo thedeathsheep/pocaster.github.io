@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Disable GitHub Pages publish
-        run: echo "GitHub Pages auto-deploy is disabled. Use deploy-farawayfromicu.yml."
+        run: echo "GitHub Pages auto-deploy is disabled. Deploy the generated site to the Ubuntu/Nginx server."

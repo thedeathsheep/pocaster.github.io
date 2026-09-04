@@ -1,0 +1,19 @@
+- title: "Infinite Canvas"
+  kind: "Interaction Study"
+  status: "Research"
+  summary: "An information space beyond grids and timelines, allowing ideas, drafts, and references to be arranged, scaled, and connected in place."
+  premise: "Creative work rarely begins in a list; its interface should not force it to end there."
+  case_url: "/projects/infinite-canvas/"
+  stack:
+    - "信息架构"
+    - "交互原型"
+
+- title: "3D Director's Desk"
+  kind: "Product Study"
+  status: "Prototype"
+  summary: "A spatial approach to creative tools, assets, and sequence control—designed as a director's desk rather than another editor."
+  premise: "Directing a scene is spatial reasoning, not a sequence of property panels."
+  case_url: "/projects/3d-directors-desk/"
+  stack:
+    - "交互设计"
+    - "空间UI"

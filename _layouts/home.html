@@ -2,101 +2,51 @@
 layout: null
 ---
 <!DOCTYPE html>
-<html lang="{{ page.language | default: site.language | default: 'zh-CN' }}">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{{ site.title }} - {{ page.hero_title | default: '个人站' }}</title>
-  <link rel="icon" href="{{ '/assets/img/avatar-icon.png' | relative_url }}">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/terminal-home.css' | relative_url }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inevitable Event</title>
+  <meta name="description" content="{{ page.description }}">
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/ie-theme.css' | relative_url }}">
 </head>
-<body class="terminal-home">
-  <div class="term-aurora" role="presentation"></div>
-  <div class="term-grid-glow" role="presentation"></div>
-  <div class="term-grain" role="presentation"></div>
+<body class="ie-home">
+  {% include ie-nav.html %}
+  <aside class="ie-rail" aria-hidden="true"><span>01 / QUESTION</span><span>02 / EVIDENCE</span><span>03 / SYSTEMS</span><span>04 / NOTES</span></aside>
+  <main>
+    <header class="ie-masthead">
+      <div class="ie-masthead__meta"><span>Wang Shangquan</span><span>Independent practice</span><span>Chengdu · China</span></div>
+      <h1><span>Tools for thought.</span><span>Systems for making.</span><span>Stories that answer back.</span></h1>
+      <div class="ie-masthead__statement"><p>I make products, prototypes, and narrative systems around a single question: what changes when a machine becomes part of the creative process?</p></div>
+    </header>
 
-  {% assign all_posts = site.posts | sort: "date" | reverse %}
-
-  <header class="creator-topbar" aria-label="站点导航">
-    <a class="creator-brand" href="{{ '/' | relative_url }}">
-      <span class="brand-mark">~/</span>{{ site.title }}
-    </a>
-    <nav class="creator-nav" aria-label="主导航">
-      {% for link in site.navbar-links %}
-      <a href="{{ link[1] | relative_url }}"><span>~/</span>{{ link[0] }}</a>
-      {% endfor %}
-    </nav>
-  </header>
-
-  <main class="terminal-container">
-    <section class="creator-hero">
-      <div class="hero-copy">
-        <p class="hero-eyebrow">{{ page.hero_eyebrow | default: site.author }}</p>
-        <p class="hero-intro">{{ page.hero_intro | default: "我把文章、实验和项目放在同一个网站里，希望它更像一个长期更新的个人空间，而不是一份整理完就不再变化的档案。" }}</p>
-      </div>
+    <section class="ie-section ie-section--questions" aria-labelledby="questions-title">
+      <div class="ie-section__head"><p class="ie-section__eyebrow">01 / Current questions</p><h2 class="ie-section__title" id="questions-title">What I keep returning to.</h2></div>
+      <ol class="ie-questions">
+        <li><span>01</span><p>How can a tool extend attention without breaking it?</p></li>
+        <li><span>02</span><p>What makes a generative system feel accountable rather than merely fluent?</p></li>
+        <li><span>03</span><p>How can an interface hold an unfinished idea without reducing it to a task?</p></li>
+      </ol>
     </section>
 
-    <section class="lane-grid" aria-label="站点主入口">
-      <a class="lane-link" href="{{ '/' | relative_url }}">
-        <span class="lane-kicker">写作</span>
-        <strong>博客</strong>
-        <span>文章、笔记和更长一些的思考。</span>
-      </a>
-      <a class="lane-link" href="{{ '/games/' | relative_url }}">
-        <span class="lane-kicker">可玩</span>
-        <strong>游戏</strong>
-        <span>偏 Web 的实验、原型，以及后续的可玩页面。</span>
-      </a>
-      <a class="lane-link" href="{{ '/projects/' | relative_url }}">
-        <span class="lane-kicker">作品</span>
-        <strong>项目</strong>
-        <span>工具、技术实验，以及站点本身。</span>
-      </a>
+    <section class="ie-section" aria-labelledby="evidence-title">
+      <div class="ie-section__head"><p class="ie-section__eyebrow">02 / Selected evidence</p><h2 class="ie-section__title" id="evidence-title">Working systems.</h2><a class="ie-section__more" href="/projects/">Full index ↗</a></div>
+      <div class="ie-index">{% for project in site.data.projects %}<a class="ie-index__row ie-index__row--evidence" href="{{ project.case_url | relative_url }}"><span class="ie-index__no">0{{ forloop.index }}</span><h3 class="ie-index__name">{{ project.title }}</h3><p class="ie-index__summary"><strong>Premise.</strong> {{ project.premise }}</p><span class="ie-index__meta">{{ project.kind }}<br>{{ project.state }}<br>{{ project.year }}</span><span class="ie-index__arrow">↗</span></a>{% endfor %}</div>
     </section>
 
-    {% if site.data.projects and site.data.projects.size > 0 %}
-    <section class="creator-section creator-section--work" aria-label="精选作品">
-      <div class="section-heading">
-        <p class="section-kicker">精选作品</p>
-        <h2>正在做的东西</h2>
-        <p>先看两个正在持续迭代的个人项目，完整目录在项目页。</p>
-      </div>
-      <div class="work-grid">
-        {% for project in site.data.projects %}
-        <article class="work-item">
-          <p class="work-label">{{ project.case_kind | default: "项目案例" }}</p>
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.summary }}</p>
-          <div class="work-links">
-            {% if project.case_url and project.case_url != "" %}
-              <a class="work-action" href="{{ project.case_url | relative_url }}">查看案例 <span aria-hidden="true">↗</span></a>
-            {% endif %}
-            {% if project.live_url and project.live_url != "" %}
-              <a class="work-action" href="{{ project.live_url }}" target="_blank" rel="noopener noreferrer">在线体验 <span aria-hidden="true">↗</span></a>
-            {% endif %}
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-    </section>
-    {% endif %}
-
-    <section class="creator-section creator-section--posts">
-      <div class="term-output recent-posts" aria-label="全部文章">
-        {% for post in all_posts %}
-          {% include terminal_line.html post=post show_tags=false %}
-        {% endfor %}
-      </div>
+    <section class="ie-section" aria-labelledby="studies-title">
+      <div class="ie-section__head"><p class="ie-section__eyebrow">03 / Studies in progress</p><h2 class="ie-section__title" id="studies-title">Unfinished on purpose.</h2></div>
+      <div class="ie-index">{% for item in site.data.research %}{% if item.case_url %}<a class="ie-index__row ie-index__row--research" href="{{ item.case_url | relative_url }}">{% else %}<article class="ie-index__row ie-index__row--research">{% endif %}<span class="ie-index__no">R{{ forloop.index }}</span><h3 class="ie-index__name">{{ item.title }}</h3><p class="ie-index__summary"><strong>Hypothesis.</strong> {{ item.premise }}</p><span class="ie-index__meta">{{ item.kind }}<br>{{ item.status }}</span><span class="ie-index__arrow">{% if item.case_url %}↗{% else %}—{% endif %}</span>{% if item.case_url %}</a>{% else %}</article>{% endif %}{% endfor %}</div>
     </section>
 
-    <section class="creator-footer" aria-label="页脚导航">
-      <div class="footer-actions">
-        <a href="{{ '/about/' | relative_url }}">关于</a>
-        <a href="{{ '/contact/' | relative_url }}">联系</a>
-        <a href="{{ '/tags/' | relative_url }}">标签</a>
-      </div>
+    {% assign posts = site.posts | sort: 'date' | reverse %}
+    <section class="ie-section" aria-labelledby="notes-title">
+      <div class="ie-section__head"><p class="ie-section__eyebrow">04 / Field notes</p><h2 class="ie-section__title" id="notes-title">Notes from making.</h2><a class="ie-section__more" href="/writing/">All writing ↗</a></div>
+      <div class="ie-index">{% for post in posts limit: 9 %}<a class="ie-writing-row" href="{{ post.url | relative_url }}"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time><span class="ie-writing-row__title">{{ post.title }}</span><span class="ie-writing-row__tags">{{ post.tags | join: ' · ' }}</span></a>{% endfor %}</div>
     </section>
   </main>
+  {% include ie-footer.html %}
+  <script src="{{ '/assets/js/ie-main.js' | relative_url }}" defer></script>
 </body>
 </html>

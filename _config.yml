@@ -10,24 +10,21 @@
 ############################
 
 # Name of website
-title: POCASTER'S BLOG
+title: Inevitable Event
 
 # Website URL (used for generating absolute URLs)
 url: "https://inevitable-event.com"
 
 # Your name to show in the footer
-author: POCASTER / Inevitable-Event Studio
+author: Inevitable Event Studio
 
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
-  博客: "/"
-  游戏: "games"
   项目: "projects"
   关于: "about"
-  联系: "contact"
 
 ################
 # --- Logo --- #
@@ -156,16 +153,13 @@ footer-hover-col: "#0085A1"
 
 # For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
 site-css:
-  - "/assets/css/custom-styles.css"
-  - "/assets/css/sticky-posts.css"
+  - "/assets/css/ie-theme.css"
   - "/assets/css/unified-theme.css"
   - "/assets/css/case-study.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
 site-js:
-  - "https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"
-  - "/assets/js/mermaid.js"
-  - "/assets/js/fix-scroll.js"
+  - "/assets/js/ie-main.js"
 
 #################################
 # --- Web Analytics Section --- #

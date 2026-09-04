@@ -2,11 +2,20 @@
 _site
 .sass-cache
 .vagrant
+site.zip
+scripts/build_site_zip.ps1
+docs/superpowers/
 
 # general
 .DS_Store
 Thumbs.db
 ehthumbs.db
+
+# user-generated files (not part of site)
+.playwright-cli/
+.superpowers/
+交付报告_*
+选题清单_*
 
 Gemfile.lock
 

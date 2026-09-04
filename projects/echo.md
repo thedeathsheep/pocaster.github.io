@@ -1,15 +1,16 @@
 ---
 layout: case-study
-title: "Echo AI 写作助手"
-subtitle: "让检索、素材和 AI 提示进入写作过程，而不是把写作者拉进另一个聊天窗口。"
-case_kind: "个人项目 / AI 产品 Case"
+title: "Echo"
+subtitle: "A writing environment where retrieval, sources, and AI prompts support the process without pulling the writer into another chat window."
+case_kind: "Independent project / AI product case"
 case_theme: "echo"
-role: "产品定义、交互设计与原型开发"
-scope: "定位 / MVP / 体验迭代 / 本地优先架构"
-product_status: "可体验原型 · BYOK"
+role: "Product definition, interaction design, and prototyping"
+scope: "Positioning / MVP / Experience iteration / Local-first architecture"
+product_status: "Playable prototype · BYOK"
 live_url: "https://echo.inevitable-event.com/"
-live_label: "在线体验 Echo"
+live_label: "Try Echo"
 permalink: /projects/echo/
+preview_img: "/assets/img/projects/echo/workspace.png"
 ---
 
 ## 产品不是替你写，而是让你继续写
