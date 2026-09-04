@@ -1,24 +1,24 @@
-# POCASTER'S BLOG
+# Inevitable Event
 
-Personal site and blog for `farawayfrom.icu`, built with Jekyll and deployed to a Windows Server + IIS environment.
+Personal site for `inevitable-event.com`, built with Jekyll and deployed to Ubuntu + Nginx.
 
 ## What lives here
 
 - Blog posts and essays
-- A personal homepage and about page
-- Data-driven indexes for games and projects
-- Deployment automation for the live server
+- Project case studies (Echo, Another History)
+- Personal homepage and about page
+- Data-driven project index
 
 ## Tech stack
 
-- Jekyll
-- Beautiful Jekyll
-- GitHub Actions
-- Windows Server + IIS
+- Jekyll + Beautiful Jekyll
+- Custom frame-system CSS theme (dark editorial)
+- Ubuntu Server + Nginx
 
 ## Local development
 
-1. Install Ruby and Bundler.
+1. Install Ruby 3.3+ and Bundler.
+
 2. Clone the repository.
 
 ```bash
@@ -44,60 +44,70 @@ bundle exec jekyll serve
 
 - `_posts/`: blog posts
 - `_layouts/`, `_includes/`, `_data/`: templates, partials, and structured site data
-- `assets/`: styles, scripts, and images
-- `scripts/`: deployment or build-related helper scripts
-- `_config.yml`: site configuration
+- `assets/css/ie-theme.css`: frame-system theme (homepage and core visual language)
+- `assets/css/unified-theme.css`: editorial theme for non-home pages (posts, projects, about)
+- `assets/css/case-study.css`: project case study layouts
+- `assets/js/ie-main.js`: navigation and frame animation scripts
 
-## Updating games and projects
+## Data files
 
-The site now uses data files for the main indexes:
+- `_data/projects.yml` — project list (Echo, Another History)
+- `_data/research.yml` — research/prototype items
+- `_data/games.yml` — game content (reserved for future use)
 
-- `_data/games.yml`
-- `_data/projects.yml`
+## Navigation
 
-To add a new item, append a new YAML object with the right fields.
+The site uses a custom navigation (`_includes/ie-nav.html`) with four sections:
 
-### Game fields
+- **Work** (`/`) — homepage with hero + featured frames + recent writing
+- **Writing** (`/writing/`) — full article archive, publication-directory style
+- **Projects** (`/projects/`) — project index with preview frames
+- **About** (`/about/`) — author bio and site philosophy
 
-- `title`
-- `slug`
-- `status`
-- `summary`
-- `platform`
-- `stack`
-- `url`
-- `cta_label`
+## Deployment
 
-### Project fields
+Common operations are wrapped in one safe PowerShell command:
 
-- `title`
-- `kind`
-- `status`
-- `summary`
-- `stack`
-- `url`
-- `cta_label`
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/site.ps1 status
+powershell -ExecutionPolicy Bypass -File scripts/site.ps1 preview
+powershell -ExecutionPolicy Bypass -File scripts/site.ps1 check
+powershell -ExecutionPolicy Bypass -File scripts/site.ps1 publish
+```
 
-These data files feed both the dedicated index pages and the featured work section on the homepage.
+`publish` only pushes existing commits from `redesign-frame-system`; it never stages or commits files. Project context lives in `PROJECT.md`, `STYLE.md`, and `CURRENT.md`. Copy `TASK_TEMPLATE.md` to the ignored local `TASK.md` when delegating a narrow task to Cursor or another agent.
+
+1. Build locally:
+
+```bash
+bundle exec jekyll build
+```
+
+2. Copy `_site/` contents to the server root (e.g. `/var/www/portfolio/`).
+
+3. Verify:
+
+```bash
+# Check nginx config
+nginx -t
+
+# Reload
+systemctl reload nginx
+
+# Verify
+curl -sI https://inevitable-event.com
+```
+
+### Deployment notes
+
+- Do NOT touch the `echo.inevitable-event.com` or `history.inevitable-event.com` subdirectories.
+- Keep a backup of the previous deployment before replacing files:
+
+```bash
+cp -r /var/www/portfolio /var/www/portfolio-backup-$(date +%Y%m%d)
+```
 
 ## Contact
 
 - Email: [helloandone@gmail.com](mailto:helloandone@gmail.com)
 - GitHub: [thedeathsheep](https://github.com/thedeathsheep)
-
-## Deployment
-
-Production deployment is handled by `.github/workflows/deploy-farawayfromicu.yml`.
-
-- Target directory: `C:\inetpub\wwwroot\farawayfromicu`
-- Backup directory: `C:\inetpub\wwwroot\_deploy_backups\farawayfromicu-<timestamp>`
-- Required GitHub Secrets:
-  - `FARAWAY_SSH_HOST`
-  - `FARAWAY_SSH_USER`
-  - `FARAWAY_SSH_KEY`
-
-The server should have OpenSSH enabled, IIS pointed at the target directory, and the deployment account should have permission to back up and replace site files.
-
-## License
-
-MIT. See [LICENSE](LICENSE).
