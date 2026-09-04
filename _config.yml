@@ -290,6 +290,8 @@ exclude:
   - README.md
   - screenshot.png
   - site.zip
+  - deploy.tar.gz
+  - ie-deploy.tar.gz
   - scripts/
   - docs/
 
