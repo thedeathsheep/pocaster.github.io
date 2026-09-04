@@ -11,3 +11,8 @@ ehthumbs.db
 Gemfile.lock
 
 beautiful-jekyll-theme-*.gem
+
+# local agent and deployment artifacts
+TASK.md
+deploy.tar.gz
+ie-deploy.tar.gz
